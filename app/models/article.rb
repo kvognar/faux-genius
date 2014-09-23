@@ -12,4 +12,6 @@
 
 class Article < ActiveRecord::Base
   validates :title, :artist, :body, presence: true
+  
+  has_many :annotations
 end

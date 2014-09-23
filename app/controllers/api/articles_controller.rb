@@ -6,8 +6,8 @@ class Api::ArticlesController < ActionController::Base
   end
   
   def show
-    @article = Article.find(params[:id])
-    render json: @article
+    @article = Article.includes(:annotations).find(params[:id])
+    render :show
   end
   
   def create

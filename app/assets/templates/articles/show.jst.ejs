@@ -1,8 +1,10 @@
 <div class="article-container">
   <h2><%= article.escape('title') %></h2>
   <h4><%= article.escape('artist') %></h4>
+  <button class="annotate-button" hidden="true">Annotate</button>
   <pre class="article-body"
        data-toggle="popover"
        data-trigger="manual"
        data-contents="Annotate"><%= article.escape('body') %></pre>
 </div>
+<div class="annotation-container"></div>

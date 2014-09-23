@@ -1,4 +1,4 @@
-App.Views.ArticleShow = Backbone.View.extend({
+App.Views.ArticleShow = Backbone.CompositeView.extend({
   template: JST['articles/show'],
   
   initialize: function () {
@@ -6,7 +6,12 @@ App.Views.ArticleShow = Backbone.View.extend({
   },
   
   events: {
-    'mouseup .article-body': 'promptAnnotate'
+    'mouseup .article-body': 'promptAnnotate',
+    'click .annotate-button': 'createAnnotationForm'
+  },
+  
+  createAnnotationForm: function () {
+    
   },
   
   getSelected: function () {
@@ -33,11 +38,11 @@ App.Views.ArticleShow = Backbone.View.extend({
     if (selection.toString().trim()) {
       var substringStart = selection.baseOffset;
       var substringEnd = selection.extendOffset;
-      debugger
-      $('.article-body').popover('show');
+      $('.annotate-button').show();
 
+    } else {
+      // needs to be hidden if ever unselected
+      $('.annotate-button').hide();
     }
-    // debugger
-    console.log("hey hey");
   },
 });
