@@ -12,14 +12,11 @@ App.Views.ArticleShow = Backbone.CompositeView.extend({
   
   createAnnotationForm: function () {
     var selection = this.getSelection();
-    var selectedText = selection.toString();
-    var substringStart = selection.baseOffset;
-    var substringEnd = selection.extentOffset;
     var newAnnotation = new App.Models.Annotation({
       article_id: this.model.id,
-      slug: selectedText,
-      start_index: substringStart,
-      end_index: substringEnd
+      slug: selection.text,
+      start_index: selection.start,
+      end_index: selection.end
     });
     var newAnnotationView = new App.Views.AnnotationNew({
       model: newAnnotation
@@ -29,15 +26,21 @@ App.Views.ArticleShow = Backbone.CompositeView.extend({
   },
   
   getSelection: function () {
-    var text = ''
+    var selection = ''
     if (window.getSelection) {
-      text = window.getSelection();
+      selection = window.getSelection();
     } else if(document.getSelection) {
-      text = document.getSelection();
+      selection = document.getSelection();
     } else if (document.selection) {
-      text = document.selection.createRange().text;
+      selection = document.selection.createRange().text;
     }
-    return text;
+    var range = selection.getRangeAt(0);
+    
+    return {
+      start: range.startOffset,
+      end: range.endOffset,
+      text: selection.toString()
+    };
   },
   
   render: function () {
@@ -49,8 +52,11 @@ App.Views.ArticleShow = Backbone.CompositeView.extend({
   
   promptAnnotate: function (event) {
     var selection = this.getSelection();
-    if (selection.toString().trim()) {
+    if (selection.text.trim()) {
       $('.annotate-button').show();
+        console.log(selection.start);
+        console.log(selection.end);
+        console.log(selection.text);
     } else {
       // TODO: needs to be hidden if ever unselected
       $('.annotate-button').hide();
