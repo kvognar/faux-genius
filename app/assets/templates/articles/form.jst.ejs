@@ -1,0 +1,29 @@
+<form id="new-article-form">
+  <label for="article-title">
+    Title
+  </label>
+  <input 
+    type="text" 
+    id="article-title" 
+    name="article[title]"
+    value="<%= article.escape('title') %>">
+  
+  <label for="article-artist">
+    Artist
+  </label>
+  <input 
+      type="text" 
+      name="article[artist]" 
+      id="article-artist"
+      value="<%= article.escape('artist') %>">
+  
+  <label for="article-body">
+    Text
+  </label>
+  <textarea 
+      name="article[body]" 
+      id="article-body"
+      ><%= article.escape('body') %></textarea>
+  
+  <input type="submit" value="Submit">
+</form>

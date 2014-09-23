@@ -43,3 +43,13 @@ group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
 end
+
+# Keeps a log of server activity
+gem 'newrelic_rpm'
+
+# Backbone!
+gem 'backbone-on-rails'
+
+# Boostrap!
+
+gem 'bootstrap-sass'
