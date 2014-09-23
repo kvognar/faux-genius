@@ -15,7 +15,6 @@ class Api::ArticlesController < ActionController::Base
     if @article.save
       render json: @article
     else
-      p @article
       render json: @article.errors.full_messages, status: :unprocessable_entity
     end
   end

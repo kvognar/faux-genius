@@ -3,11 +3,11 @@ App.Models.Article = Backbone.Model.extend({
   
   annotations: function () {
     if (this._annotations === undefined) {
-      this._lists = new App.Collections.Annotations([], {
+      this._annotations = new App.Collections.Annotations([], {
         article: this
       });
     }
-    return this._lists;
+    return this._annotations;
   },
   
   parse: function (response) {
