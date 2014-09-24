@@ -24,7 +24,7 @@ App.Views.ArticleShow = Backbone.CompositeView.extend({
     this.addSubview('.annotation-container', newAnnotationView);
     
   },
-  
+
   getSelection: function () {
     var selection = ''
     if (window.getSelection) {
@@ -44,10 +44,28 @@ App.Views.ArticleShow = Backbone.CompositeView.extend({
   },
   
   render: function () {
-    var renderedContent = this.template({ article: this.model });
+    var body = this.addAnchorsToBody();
+    var renderedContent = this.template({ 
+      article: this.model,
+      body: body
+    });
     this.$el.html(renderedContent);
     
     return this;
+  },
+  
+  addAnchorsToBody: function() {
+    var result = this.model.get('body');
+    this.model.annotations().each(function(ann) {
+      // debugger
+      result = result.substring(0, ann.get('end_index')) + 
+                                "](/#/" +ann.id + ")" +
+                                result.substring(ann.get('end_index'), result.length);
+      result = result.substring(0, ann.get('start_index')) + 
+                                "[" +
+                                result.substring(ann.get('start_index'), result.length);
+    });
+    return result;
   },
   
   promptAnnotate: function (event) {

@@ -5,4 +5,6 @@ json.annotations @article.annotations,
                  :start_index,
                  :end_index,
                  :slug,
-                 :body
+                 :body,
+                 :id
+                 

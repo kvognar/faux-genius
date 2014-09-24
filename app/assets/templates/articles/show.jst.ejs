@@ -4,9 +4,11 @@
   <button class="annotate-button" hidden="true">Annotate</button>
   
 <!-- In the long run this should not be a pre -->
+  <% if (body) { %>
   <pre class="article-body"
        data-toggle="popover"
        data-trigger="manual"
-       data-contents="Annotate"><%= article.escape('body') %></pre>
+       data-contents="Annotate"><%= marked(_.escape(body)) %></pre>
+  <% } %>
  <div class="annotation-container"></div>
 </div>
