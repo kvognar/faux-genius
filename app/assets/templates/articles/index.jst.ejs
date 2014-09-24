@@ -1,5 +1,9 @@
 <ul>
 <% articles.each(function (article) { %>
-  <li><%= article.escape('title') %></li>
+  <li>
+    <a href="/#/articles/<%= article.id %>">
+      <%= article.escape('title') %>
+    </a>
+  </li>
 <% }); %>
 </ul>

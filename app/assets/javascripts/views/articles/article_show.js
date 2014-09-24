@@ -11,7 +11,6 @@ App.Views.ArticleShow = Backbone.CompositeView.extend({
     this.addSubview('.annotation-container', this.annotationView);
     this.annotationView.hide();
     
-    App.strawberry = this.model.annotations();
     this.annotationForm = new App.Views.AnnotationNew({
       model: new App.Models.Annotation(),
       collection: this.model.annotations()

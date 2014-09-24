@@ -16,6 +16,8 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+$genius-gold: rgb(255, 195, 28);
+
 body {
   margin: 0 5%;
 }
@@ -29,4 +31,28 @@ body {
   width: 40%;
   float: right;
   
+}
+
+#article-body {
+  background-color: rgb(20, 20, 20);
+  color: white;
+}
+
+#article-body a {
+  background-color: gray;
+  color: white;
+  text-decoration: none;
+}
+
+#article-body a:hover {
+  background-color: $genius-gold;
+  color: black;
+};
+
+#new-article-form {
+  textarea {
+    width: 90%;
+    background-color: white;
+    color: black;
+  }
 }

@@ -1,29 +1,47 @@
-<form id="new-article-form">
-  <label for="article-title">
-    Title
-  </label>
-  <input 
-    type="text" 
-    id="article-title" 
-    name="article[title]"
-    value="<%= article.escape('title') %>">
-  
-  <label for="article-artist">
-    Artist
-  </label>
-  <input 
-      type="text" 
-      name="article[artist]" 
-      id="article-artist"
-      value="<%= article.escape('artist') %>">
-  
-  <label for="article-body">
-    Text
-  </label>
-  <textarea 
-      name="article[body]" 
-      id="article-body"
-      ><%= article.escape('body') %></textarea>
-  
-  <input type="submit" value="Submit">
+
+<form role="form" id="new-article-form">
+  <div class="row">
+    <div class="form-group col-md-5">
+        <label for="article-title" class="control-label">
+          Title:
+        </label>
+        <br>
+          <input 
+            type="text"
+            class="form-control"
+            id="article-title" 
+            name="article[title]"
+            placeholder="Title"
+            value="<%= article.escape('title') %>">
+    </div>
+    
+    <div class="form-group col-md-5">
+      <label for="article-artist" class="control-label">
+        By:
+      </label>
+      <br>
+        <input 
+            type="text" 
+            class="form-control"
+            name="article[artist]" 
+            id="article-artist"
+            placeholder="The primary artist, author, creator, etc."
+            value="<%= article.escape('artist') %>">
+    </div>
+  </div> <!-- row -->
+  <div class="row">
+  <div class="form-group col-md-12">
+    <label for="article-body" class="control-label">
+      Text:
+    </label>
+    <br>
+      <textarea 
+          name="article[body]" 
+          class="form-control"
+          rows="24"
+          id="article-body"
+          ><%= article.escape('body') %></textarea>
+  </div>
+</div>
+  <input type="submit" value="Submit" class="btn btn-primary">
 </form>
