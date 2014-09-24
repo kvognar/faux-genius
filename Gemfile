@@ -51,5 +51,7 @@ gem 'newrelic_rpm'
 gem 'backbone-on-rails'
 
 # Boostrap!
-
 gem 'bootstrap-sass'
+
+# Make seed file from test db
+gem 'seed_dump'
