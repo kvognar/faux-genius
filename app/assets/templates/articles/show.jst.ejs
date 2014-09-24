@@ -5,10 +5,10 @@
   
 <!-- In the long run this should not be a pre -->
   <% if (body) { %>
-  <pre class="article-body"
+  <pre id="article-body"
        data-toggle="popover"
        data-trigger="manual"
-       data-contents="Annotate"><%= marked(_.escape(body)) %></pre>
+       data-contents="Annotate"><%= body %></pre>
   <% } %>
  <div class="annotation-container"></div>
 </div>

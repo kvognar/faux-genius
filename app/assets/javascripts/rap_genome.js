@@ -16,4 +16,9 @@ window.App = {
 
 $(document).ready(function(){
   App.initialize();
+  
+  marked.setOptions({
+    sanitize: false,
+    breaks: false 
+  });
 });
