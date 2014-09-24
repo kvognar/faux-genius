@@ -29,8 +29,8 @@ body {
 
 .annotation-container {
   width: 40%;
-  float: right;
-  
+  position: fixed;
+  right: 0;
 }
 
 #article-body {
