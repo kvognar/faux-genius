@@ -35,7 +35,10 @@ App.Views.ArticleShow = Backbone.CompositeView.extend({
   isValidSelection: function (selection) {
     // double newlines break markdown links
     return selection.text.trim().length > 0 && 
-           selection.text.indexOf('\n\n') === -1;
+           selection.text.indexOf('\n\n') === -1 &&
+           selection.startParent.tagName !== "A" &&
+           selection.endParent.tagName !== "A" &&
+           this.selectionContainsNoLink(selection.obj);
   },
     
   getSelection: function () {
@@ -43,21 +46,26 @@ App.Views.ArticleShow = Backbone.CompositeView.extend({
     var start = 0; end = 0;
     var body = document.getElementById('article-body');
     var sel, range, priorRange, text;
+    var selection;
     var noSelect = {
       start: -1,
       end: -1,
-      text: ''
+      text: '',
+      obj: selection
     };
 
     if (typeof window.getSelection != "undefined") {
       if (window.getSelection().type === 'None') { return noSelect }
-      range = window.getSelection().getRangeAt(0);
+      selection = window.getSelection()
+      range = selection.getRangeAt(0);
       priorRange = range.cloneRange();
       priorRange.selectNodeContents(body);
       priorRange.setEnd(range.startContainer, range.startOffset);
       start = priorRange.toString().length;
       end = start + range.toString().length;
-      text = window.getSelection().toString();
+      text = selection.toString();
+      baseParent = window.getSelection().baseNode.parentElement;
+      extentParent = window.getSelection().extentNode.parentElement;
     } else if (typeof document.selection != "undefined" &&
               (sel = document.selection).type != "Control") {
                 range = sel.createRange();
@@ -72,7 +80,10 @@ App.Views.ArticleShow = Backbone.CompositeView.extend({
     return {
       start: start,
       end: end,
-      text: text
+      text: text,
+      startParent: baseParent,
+      endParent: extentParent,
+      obj: selection
     };
   },
   
@@ -99,6 +110,15 @@ App.Views.ArticleShow = Backbone.CompositeView.extend({
     this.attachSubviews();
     
     return this;
+  },
+  
+  selectionContainsNoLink: function (selection) {
+    // thanks to sharp johnny on stackoverflow
+    var range = selection.getRangeAt(0);
+    var result = $('a', range.commonAncestorContainer).filter(function() {
+      return selection.containsNode(this);
+    });
+    return result.length === 0;
   },
   
   showAnnotation: function (event) {
