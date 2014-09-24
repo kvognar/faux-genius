@@ -3,7 +3,7 @@ App.Views.ArticleShow = Backbone.CompositeView.extend({
   
   initialize: function () {
     this.listenTo(this.model, 'sync', this.render);
-    this.listenTo(this.model.annotations(), 'add', this.render);
+    this.listenTo(this.model.annotations(), 'created', this.refreshText);
     
     this.annotationView = new App.Views.AnnotationShow({
       model: new App.Models.Annotation()
@@ -11,11 +11,17 @@ App.Views.ArticleShow = Backbone.CompositeView.extend({
     this.addSubview('.annotation-container', this.annotationView);
     this.annotationView.hide();
     
+    App.strawberry = this.model.annotations();
     this.annotationForm = new App.Views.AnnotationNew({
       model: new App.Models.Annotation(),
       collection: this.model.annotations()
     });
     this.addSubview('.annotation-container', this.annotationForm);
+    
+    this.articleText = new App.Views.ArticleText({
+      model: this.model
+    });
+    this.addSubview('.article-text', this.articleText);
 
     this.annotationForm.hide();
     
@@ -25,23 +31,6 @@ App.Views.ArticleShow = Backbone.CompositeView.extend({
     'mouseup #article-body': 'promptAnnotate',
     'click .annotate-button': 'showAnnotationForm',
     'click #article-body a': 'showAnnotation'
-  },
-  
-  addAnchorsToBody: function() {
-    var result = this.model.get('body');
-    if (!result) { return ''; }
-    this.model.annotations().each(function (ann) {
-
-      result = result.substring(0, ann.get('end_index')) + 
-                "](" + ann.id + ")" +
-                result.substring(ann.get('end_index'), result.length);
-      result = result.substring(0, ann.get('start_index')) + 
-                "[" +
-                result.substring(ann.get('start_index'), result.length);
-    });
-    var markedResult = marked(_.escape(result));
-    var brResult = markedResult.replace(/<p>/g, '').replace(/<\/p>/g, '\n');
-    return brResult;
   },
   
   isValidSelection: function (selection) {
@@ -99,11 +88,15 @@ App.Views.ArticleShow = Backbone.CompositeView.extend({
     }
   },
   
+  refreshText: function () {
+    console.log("new annotation!");
+    debugger
+    this.articleText.render();
+  },
+  
   render: function () {
-    var body = this.addAnchorsToBody();
     var renderedContent = this.template({ 
       article: this.model,
-      body: body
     });
     this.$el.html(renderedContent);
     this.attachSubviews();

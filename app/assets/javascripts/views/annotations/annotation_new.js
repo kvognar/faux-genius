@@ -5,6 +5,8 @@ App.Views.AnnotationNew = Backbone.CompositeView.extend({
     'submit .annotation-form': 'submit'
   },
   
+  initialize: function () { this.collection.trigger('create'); },
+  
   hide: function () {
     this.$el.hide();
   },
@@ -27,15 +29,17 @@ App.Views.AnnotationNew = Backbone.CompositeView.extend({
   },
   
   submit: function (event) {
-    var ann = this;
+    var form = this;
     event.preventDefault();
+    
     var formData = $(event.currentTarget).serializeJSON();
-    this.model.set(formData.annotation);
-    this.model.save({}, {
+    form.model.set(formData.annotation);
+    form.collection.create(this.model, {
       success: function (resp) {
-        ann.reset();
-        ann.collection.add(ann);
-      }
+        form.reset();
+        form.collection.trigger('created');
+      },
+      wait: true
     });
   },
   
