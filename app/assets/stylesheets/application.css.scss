@@ -16,6 +16,10 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+body {
+  margin: 0 5%;
+}
+
 #article-body {
   width: 50%;
   float: left;

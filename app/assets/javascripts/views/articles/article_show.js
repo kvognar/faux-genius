@@ -29,7 +29,7 @@ App.Views.ArticleShow = Backbone.CompositeView.extend({
     // many thanks to Tim Down on StackOverload
     var start = 0; end = 0;
     var body = document.getElementById('article-body');
-    var sel, range, priorRange;
+    var sel, range, priorRange, text;
 
     if (typeof window.getSelection != "undefined") {
       range = window.getSelection().getRangeAt(0);
@@ -38,8 +38,18 @@ App.Views.ArticleShow = Backbone.CompositeView.extend({
       priorRange.setEnd(range.startContainer, range.startOffset);
       start = priorRange.toString().length;
       end = start + range.toString().length;
-    }
-    var text = window.getSelection().toString();
+      text = window.getSelection().toString();
+    } else if (typeof document.selection != "undefined" &&
+              (sel = document.selection).type != "Control") {
+                range = sel.createRange();
+                priorRange = document.body.createTextRange();
+                priorRange.moveToElementText(element);
+                priorRange.setEndpoint("EndToStart", range);
+                start = priorRange.text.length;
+                end = start + range.text.length;
+                text = range.text;
+              }
+      
     return {
       start: start,
       end: end,
@@ -94,9 +104,14 @@ App.Views.ArticleShow = Backbone.CompositeView.extend({
     return brResult;
   },
   
+  isValidSelection: function (selection) {
+    return selection.text.trim().length > 0 && 
+           selection.text.indexOf('\n\n') === -1;
+  },
+  
   promptAnnotate: function (event) {
     var selection = this.getSelection();
-    if (selection.text.trim()) {
+    if (this.isValidSelection(selection)) {
       $('.annotate-button').show();
       this.debugPrint(selection);
     } else {
