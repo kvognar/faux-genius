@@ -14,4 +14,11 @@ class Article < ActiveRecord::Base
   validates :title, :artist, :body, presence: true
   
   has_many :annotations
+  after_initialize :remove_carriage_returns
+  
+  private
+  
+  def remove_carriage_returns
+    self.body.gsub!(/\r/, '')
+  end
 end

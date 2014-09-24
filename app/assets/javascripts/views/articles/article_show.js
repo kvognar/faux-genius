@@ -88,8 +88,6 @@ App.Views.ArticleShow = Backbone.CompositeView.extend({
   },
   
   refreshText: function () {
-    console.log("new annotation!");
-    debugger
     this.articleText.render();
   },
   
