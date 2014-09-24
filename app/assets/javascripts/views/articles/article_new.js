@@ -6,12 +6,14 @@ App.Views.ArticleNew = Backbone.View.extend({
   },
   
   submit: function (event) {
+    var view = this;
     event.preventDefault();
+    
     var formData = $(event.currentTarget).serializeJSON();
     this.model.set(formData.article);
     this.model.save({}, {
       success: function () {
-        alert('huzzah!');
+        Backbone.history.navigate('#/articles/' + view.model.id);
       },
       
       error: function (resp) {
