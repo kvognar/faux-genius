@@ -18,7 +18,7 @@ class Article < ActiveRecord::Base
   
   private
   
-  def remove_carriage_returns
+  def remove_invisible_characters
     self.body.gsub!(/\r/, '')
     self.body.strip!
   end
