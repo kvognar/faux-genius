@@ -9,6 +9,11 @@
 <body>
   
 <%= render partial: 'layouts/header' %>
+<% if flash[:errors] %>
+  <% flash[:errors].each do |message| %>
+    <div><%= message %></div>
+  <% end %>
+<% end %>
 
 <% unless signed_in? %>
   <%= render partial: 'users/modals' %>

@@ -4,6 +4,11 @@
     <h4><%= article.escape('artist') %></h4>
   </div>
   <button class="annotate-button" hidden="true">Annotate</button>
-  <div class="article-text"></div>
+  <div class="article-text"
+       data-toggle="popover"
+       data-placement="top"
+       data-content="Annotate"
+       data-container="body"
+       data-trigger="manual"></div>
   <div class="annotation-container"></div>
 </div>

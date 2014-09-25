@@ -1,5 +1,6 @@
 App.Views.ArticleShow = Backbone.CompositeView.extend({
   template: JST['articles/show'],
+  popoverTemplate: JST['articles/popover'],
   
   initialize: function () {
     this.listenTo(this.model, 'sync', this.render);
@@ -28,19 +29,12 @@ App.Views.ArticleShow = Backbone.CompositeView.extend({
   
   events: {
     'mouseup #article-body': 'promptAnnotate',
-    'click .annotate-button': 'showAnnotationForm',
-    'click #article-body a': 'showAnnotation'
+    'click .annotation-prompt a': 'showAnnotationForm',
+    'click #article-body a': 'showAnnotation',
+    // 'click #article-body a': 'showPopover'
   },
   
-  isValidSelection: function (selection) {
-    // double newlines break markdown links
-    return selection.text.trim().length > 0 && 
-           selection.text.indexOf('\n\n') === -1 &&
-           selection.startParent.tagName !== "A" &&
-           selection.endParent.tagName !== "A" &&
-           this.selectionContainsNoLink(selection.obj);
-  },
-    
+  
   getSelection: function () {
     // many thanks to Tim Down on StackOverload
     var start = 0; end = 0;
@@ -87,14 +81,29 @@ App.Views.ArticleShow = Backbone.CompositeView.extend({
     };
   },
   
+  hidePopover: function () {
+    $('#article-body').popover('hide');
+  },
+  
+  isValidSelection: function (selection) {
+    // double newlines break markdown links
+    return selection.text.trim().length > 0 && 
+           selection.text.indexOf('\n\n') === -1 &&
+           selection.startParent.tagName !== "A" &&
+           selection.endParent.tagName !== "A" &&
+           this.selectionContainsNoLink(selection.obj);
+  },
+    
+
+  
   promptAnnotate: function (event) {
     var selection = this.getSelection();
     if (this.isValidSelection(selection)) {
-      $('.annotate-button').show();
-      this._debugPrint(selection);
+      this.showPopover(selection);
+      // this._debugPrint(selection);
     } else {
       // TODO: needs to be hidden if ever unselected
-      $('.annotate-button').hide();
+      this.hidePopover();
     }
   },
   
@@ -107,8 +116,10 @@ App.Views.ArticleShow = Backbone.CompositeView.extend({
       article: this.model,
     });
     this.$el.html(renderedContent);
+    // this.$('.article-text').popover({
+    //   selector: 'a',
+    // });
     this.attachSubviews();
-    
     return this;
   },
   
@@ -130,7 +141,8 @@ App.Views.ArticleShow = Backbone.CompositeView.extend({
    this.annotationView.show();
   },
   
-  showAnnotationForm: function () {
+  showAnnotationForm: function (event) {
+    event.preventDefault();
     var selection = this.getSelection();
     var newAnnotation = new App.Models.Annotation({
       article_id: this.model.id,
@@ -141,7 +153,27 @@ App.Views.ArticleShow = Backbone.CompositeView.extend({
     this.annotationForm.switchAnnotation(newAnnotation);
     this.annotationView.hide();
     this.annotationForm.show();
-
+  },
+  
+  showPopover: function (selection) {
+    var selectionBox = selection.obj.getRangeAt(0).getBoundingClientRect();
+    $('#article-body').popover({
+      container: '.article-container',
+      trigger: 'manual',
+      content: "Annotate",
+      template: this.popoverTemplate().toString(),
+      placement: 'top'
+    });
+    
+    // without timeout Bootstrap will re-set popover position
+    setTimeout(function () {
+      $('.popover').css({
+        top: selectionBox.top + window.scrollY - 45, 
+        left: selectionBox.right - 50
+      });
+    }, 0);
+   $('#article-body').popover('show');
+   this.delegateEvents();
   },
   
   

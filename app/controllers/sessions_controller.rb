@@ -4,15 +4,16 @@ class SessionsController < ApplicationController
     @user = User.find_by_credentials(session_params)
     if @user
       sign_in!(@user)
-      redirect_to root_url
+      redirect_to :back
     else
-      render json: 'invalid something something'
+      flash[:errors] = ["I don't remember you :("]
+      redirect_to :back
     end
   end
   
   def destroy
     sign_out!
-    redirect_to root_url
+    redirect_to :back
   end
   
   private

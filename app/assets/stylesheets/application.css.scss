@@ -17,6 +17,7 @@
 @import "bootstrap";
 
 $genius-gold: rgb(255, 195, 28);
+$genius-lightgold: rgb(255, 208, 79);
 
 body {
   margin: 0 5%;
@@ -32,6 +33,28 @@ body {
   position: fixed;
   right: 0;
 }
+
+.popover {
+  background: $genius-gold;
+  a {
+    color: black; 
+  }
+  
+  :hover {
+    color: white;
+    text-decoration: none;
+//    background: $genius-lightgold;
+//    font-weight: bold;
+  };
+}
+
+.popover.top .arrow:after {
+  border-top-color: $genius-gold;
+}
+
+//.popover:hover.top .arrow:after {
+// border-top-color: $genius-lightgold;
+//};
 
 #article-body {
   background-color: rgb(20, 20, 20);

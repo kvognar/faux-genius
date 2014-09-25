@@ -3,8 +3,11 @@ window.App = {
   Collections: {},
   Views: {},
   Routers: {},
-  initialize: function() {
+  initialize: function(options) {
     
+    if (options.user) {
+      App.user = new App.Models.User(options.user);
+    }
     App.articles = new App.Collections.Articles();
     this.router = new App.Routers.ArticleRouter({
       $rootEl: $('#content')
@@ -14,11 +17,3 @@ window.App = {
   }
 };
 
-$(document).ready(function(){
-  App.initialize();
-  
-  marked.setOptions({
-    sanitize: false,
-    breaks: false 
-  });
-});
