@@ -1,0 +1,31 @@
+<% tag = kind == "Sign Up" ? 'sign-up' : 'sign-in' %>
+
+<div class="modal fade" 
+     id="<%= tag %>-modal" 
+     tabindex="-1" 
+     role="dialog"
+     aria-labelledby="<%= kind %>">
+     
+     <div class="modal-dialog">
+       <div class="modal-content">
+         <div class="modal-header">
+           <button type="button" 
+             class="close" 
+             data-dismiss="modal">
+             <span area-hidden="true">&times;</span>
+             <span class="sr-only">Close</span>
+           </button>
+         </div>
+         
+         <div class="modal-body">
+           <%= render partial: 'users/form', locals: { kind: kind } %>
+         </div>
+         
+         <div class="modal-footer">
+           <button type="button" 
+                   class="btn btn-default"
+                   data-dismiss="modal">Cancel</button>
+         </div>
+       </div>
+     </div>
+</div>

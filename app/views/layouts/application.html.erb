@@ -10,6 +10,10 @@
   
 <%= render partial: 'layouts/header' %>
 
+<% unless signed_in? %>
+  <%= render partial: 'users/modals' %>
+<% end %>
+
 <%= yield %>
 
 </body>

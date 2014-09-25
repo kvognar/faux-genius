@@ -5,9 +5,22 @@
     </div>
     
     <ul class="nav navbar-nav navbar-right">
+      <% if signed_in? %>
       <li>
         <a href="/#/articles/new">Create</a>
       </li>
+      <% else %>
+      <li>
+        <!-- <button class="btn btn-primary btn-lg" data-toggle="modal" target="#sign-up-modal">boop</button> -->
+        <a href="#"
+           data-toggle="modal"
+           data-target="#sign-up-modal">Sign up</a>
+      <li>
+        <a href="#"
+           data-toggle="modal"
+           data-target="#sign-in-modal">Sign in</a>
+      </li>
+      <% end %>
     </ul>
   </div>
 </nav>
