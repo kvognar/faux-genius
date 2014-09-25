@@ -9,9 +9,11 @@
       <li>
         <a href="/#/articles/new">Create</a>
       </li>
+      <li>
+        <%= link_to 'Sign out', session_url, method: :delete %>
+      </li>
       <% else %>
       <li>
-        <!-- <button class="btn btn-primary btn-lg" data-toggle="modal" target="#sign-up-modal">boop</button> -->
         <a href="#"
            data-toggle="modal"
            data-target="#sign-up-modal">Sign up</a>
