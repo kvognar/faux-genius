@@ -31,7 +31,6 @@ App.Views.ArticleShow = Backbone.CompositeView.extend({
     'mouseup #article-body': 'promptAnnotate',
     'click .annotation-prompt a': 'showAnnotationForm',
     'click #article-body a': 'showAnnotation',
-    // 'click #article-body a': 'showPopover'
   },
   
   
@@ -93,9 +92,7 @@ App.Views.ArticleShow = Backbone.CompositeView.extend({
            selection.endParent.tagName !== "A" &&
            this.selectionContainsNoLink(selection.obj);
   },
-    
-
-  
+      
   promptAnnotate: function (event) {
     var selection = this.getSelection();
     if (this.isValidSelection(selection)) {
@@ -109,6 +106,7 @@ App.Views.ArticleShow = Backbone.CompositeView.extend({
   
   refreshText: function () {
     this.articleText.render();
+    this.delegateEvents();
   },
   
   render: function () {
@@ -116,9 +114,6 @@ App.Views.ArticleShow = Backbone.CompositeView.extend({
       article: this.model,
     });
     this.$el.html(renderedContent);
-    // this.$('.article-text').popover({
-    //   selector: 'a',
-    // });
     this.attachSubviews();
     return this;
   },
@@ -142,7 +137,12 @@ App.Views.ArticleShow = Backbone.CompositeView.extend({
   },
   
   showAnnotationForm: function (event) {
+    if (!App.user) {
+      $('#prompt-login-modal').modal('show');
+      return;
+    }
     event.preventDefault();
+    this.hidePopover();
     var selection = this.getSelection();
     var newAnnotation = new App.Models.Annotation({
       article_id: this.model.id,
@@ -156,6 +156,7 @@ App.Views.ArticleShow = Backbone.CompositeView.extend({
   },
   
   showPopover: function (selection) {
+    console.log('showing popover');
     var selectionBox = selection.obj.getRangeAt(0).getBoundingClientRect();
     $('#article-body').popover({
       container: '.article-container',
@@ -164,7 +165,7 @@ App.Views.ArticleShow = Backbone.CompositeView.extend({
       template: this.popoverTemplate().toString(),
       placement: 'top'
     });
-    
+    console.log($('.popover'));
     // without timeout Bootstrap will re-set popover position
     setTimeout(function () {
       $('.popover').css({

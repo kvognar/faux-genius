@@ -6,7 +6,6 @@ App.Views.ArticleText = Backbone.View.extend({
   },
   
   render: function () {
-    console.log(this.model.annotations().length);
     var body = this.addAnchorsToBody();
     var renderedContent = this.template({ body: body });
     this.$el.html(renderedContent);
