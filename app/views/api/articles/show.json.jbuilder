@@ -1,10 +1,25 @@
-json.(@article, :title, :artist, :body)
+json.(@article, :id, :title, :artist, :body)
 
-json.annotations @article.annotations,
-                 :article_id,
-                 :start_index,
-                 :end_index,
-                 :slug,
-                 :body,
-                 :id
-                 
+json.suggestions @article.suggestions, 
+                 :id, 
+                 :author_id, 
+                 :body, 
+                 :suggestable_id, 
+                 :suggestable_type
+
+json.annotations @article.annotations do |annotation|
+  json.extract! annotation,
+                :article_id,
+                :start_index,
+                :end_index,
+                :slug,
+                :body,
+                :id
+  json.suggestions annotation.suggestions,
+                   :id, 
+                   :author_id, 
+                   :body, 
+                   :suggestable_id, 
+                   :suggestable_type
+
+end

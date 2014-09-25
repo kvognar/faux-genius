@@ -16,4 +16,5 @@ class Annotation < ActiveRecord::Base
   validates :start_index, :end_index, :body, :article, :slug, presence: true
   
   belongs_to :article
+  has_many :suggestions, as: :suggestable
 end

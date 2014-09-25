@@ -6,7 +6,9 @@ class Api::ArticlesController < ActionController::Base
   end
   
   def show
-    @article = Article.includes(:annotations).find(params[:id])
+    @article = Article.includes(:suggestions, 
+                                annotations: :suggestions).find(params[:id])
+    # render json: @article
     render :show
   end
   

@@ -1,3 +1,15 @@
+# == Schema Information
+#
+# Table name: users
+#
+#  id            :integer          not null, primary key
+#  username      :string(255)      not null
+#  password_hash :string(255)      not null
+#  session_token :string(255)      not null
+#  created_at    :datetime
+#  updated_at    :datetime
+#
+
 class User < ActiveRecord::Base
   validates :username, :password_hash, :session_token, presence: true
   validates :username, :session_token, uniqueness: true
@@ -6,6 +18,13 @@ class User < ActiveRecord::Base
   after_initialize :ensure_session_token
   
   attr_reader :password
+  
+  has_many(
+    :authored_suggestions,
+    class_name: "Suggestion",
+    foreign_key: :author_id,
+    primary_key: :id
+  )
   
   def password=(password)
     @password = password
