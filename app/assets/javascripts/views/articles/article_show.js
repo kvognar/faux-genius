@@ -183,12 +183,11 @@ App.Views.ArticleShow = Backbone.CompositeView.extend({
     console.log('showing popover');
     var $articleBody = $('#article-body');
     var selectionBox = selection.obj.getRangeAt(0).getBoundingClientRect();
-    // $('#article-body').data('bs.popover', null); 
+    // $('#article-body').data('bs.popover', null);
     if (!$articleBody.data('bs.popover')){
 
       $articleBody.popover({
         container: '.article-container',
-        trigger: 'manual',
         content: "Annotate",
         template: this.popoverTemplate().toString(),
         placement: 'top'
