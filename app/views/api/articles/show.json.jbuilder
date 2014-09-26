@@ -23,6 +23,7 @@ json.annotations @article.annotations do |annotation|
                 :slug,
                 :body,
                 :id
+  json.author annotation.author, :username, :id
                 
   json.suggestions annotation.suggestions do |suggestion|
     json.extract! suggestion,

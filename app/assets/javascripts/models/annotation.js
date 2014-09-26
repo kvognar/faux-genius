@@ -5,10 +5,14 @@ App.Models.Annotation = Backbone.Model.extend({
     var that = this;
     if (options.suggestions) {
       _.each(options.suggestions, function (suggestion) {
-        newSuggestion = new App.Models.Suggestion(suggestion);
+        var newSuggestion = new App.Models.Suggestion(suggestion);
         that.suggestions().add(newSuggestion);
       });
       delete options.suggestions;
+    }
+    if (options.author) {
+      this.author = new App.Models.User(options.author);
+      delete options.author;
     }
   },
   

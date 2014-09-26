@@ -10,7 +10,7 @@ class Api::ArticlesController < ApplicationController
                                 :artist,
                                 :album,
                                 suggestions: :author, 
-                                annotations: {suggestions: :author}
+                                annotations: [:author, {suggestions: :author}]
                                 ).find(params[:id])
     render :show
   end
@@ -22,6 +22,11 @@ class Api::ArticlesController < ApplicationController
     else
       render json: @article.errors.full_messages, status: :unprocessable_entity
     end
+  end
+  
+  def search
+    @articles = Article.includes(:artist, :album).find_by_query(params[:query])
+    render :search
   end
   
   private

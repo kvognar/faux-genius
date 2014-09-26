@@ -21,7 +21,7 @@
   <li>
     <div class="suggestion-content">
       <div class="suggestion-header">
-        <h4>Posted by user #<%= suggestion.escape('author_id') %></h4>
+        <h4>Posted by <%= suggestion.author.escape('username') %></h4>
         <span class="suggestion-date">
           <%= suggestion.escape('created_at') %>
         </span>

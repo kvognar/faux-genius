@@ -4,6 +4,9 @@
       <a class="navbar-brand" href="/#/">Rap Genome</a>
     </div>
     
+
+
+    
     <ul class="nav navbar-nav navbar-right">
       <% if signed_in? %>
       <li>
@@ -24,6 +27,16 @@
       </li>
       <% end %>
     </ul>
+    
+    
+    <div class="searchbar-container">
+      <form class="navbar-form navbar-right" role="search">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Search">
+        </div>
+      </form>
+      <!-- <span class="glyphicon glyphicon-search"></span> -->
+  </div>
   </div>
 </nav>
       <!--if signed in -->

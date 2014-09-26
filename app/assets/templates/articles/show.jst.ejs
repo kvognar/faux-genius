@@ -4,7 +4,9 @@
       <h2><%= article.escape('title') %></h2>
     </div>
     <div class="article-artist">
-      <h4><%= article.escape('artist') %></h4>
+      <% if (article.artist) { %>
+      <h4><%= article.artist.escape('name') %></h4>
+      <% } %>
     </div>
   </div>
   <div class="row">

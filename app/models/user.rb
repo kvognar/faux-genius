@@ -20,6 +20,13 @@ class User < ActiveRecord::Base
   attr_reader :password
   
   has_many(
+    :authored_annotations,
+    class_name: "Annotation",
+    foreign_key: :author_id,
+    primary_key: :id
+  )
+  
+  has_many(
     :authored_suggestions,
     class_name: "Suggestion",
     foreign_key: :author_id,

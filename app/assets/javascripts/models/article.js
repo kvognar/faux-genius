@@ -29,12 +29,23 @@ App.Models.Article = Backbone.Model.extend({
       });
       delete response.articles;
     }
+
     if (response.suggestions) {
       _.each(response.suggestions, function (suggestion) {
         newSuggestion = new App.Models.Suggestion(suggestion);
         article.suggestions().add(newSuggestion);
       });
       delete response.suggestions;
+    }
+
+    if (response.artist) {
+      this.artist = new App.Models.Artist(response.artist);
+      delete response.artist;
+    }
+    
+    if (response.album) {
+      this.album = new App.Models.Album(response.album);
+      delete response.album;
     }
     
     return response;
