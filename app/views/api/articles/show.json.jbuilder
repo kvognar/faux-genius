@@ -22,6 +22,7 @@ json.annotations @article.annotations do |annotation|
                    :author_id, 
                    :body, 
                    :suggestable_id, 
-                   :suggestable_type
+                   :suggestable_type,
+                   :created_at
 
 end

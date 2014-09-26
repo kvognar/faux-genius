@@ -15,18 +15,7 @@ App.Views.ArticleShow = Backbone.CompositeView.extend({
   },
   
   initializeSubviews: function () {
-    this.annotationView = new App.Views.AnnotationShow({
-      model: new App.Models.Annotation()
-    });
-    this.addSubview('.annotation-container', this.annotationView);
-    this.annotationView.hide();
-    
-    this.annotationForm = new App.Views.AnnotationNew({
-      model: new App.Models.Annotation(),
-      collection: this.model.annotations()
-    });
-    this.addSubview('.annotation-container', this.annotationForm);
-    
+        
     this.articleText = new App.Views.ArticleText({
       model: this.model
     });
@@ -34,13 +23,29 @@ App.Views.ArticleShow = Backbone.CompositeView.extend({
     
     this.suggestionsView = new App.Views.SuggestionIndex({
       collection: this.model.suggestions(),
-      article: this.model,
+      suggestable: this.model,
       suggestableType: "Article"
     });
     this.addSubview('.suggestions-container', this.suggestionsView);
 
-    this.annotationForm.hide();
     
+  },
+  
+  createAnnotationForm: function (annotation) {
+    this.annotationForm = new App.Views.AnnotationNew({
+      model: annotation,
+      collection: this.model.annotations()
+    });
+    this.addSubview('.annotation-container', this.annotationForm);
+    this.annotationForm.hide();
+  },
+  
+  createAnnotationView: function (annotation) {
+    this.annotationView = new App.Views.AnnotationShow({
+      model: annotation
+    });
+    this.addSubview('.annotation-container', this.annotationView);
+    this.annotationView.hide();
   },
   
   
@@ -141,9 +146,14 @@ App.Views.ArticleShow = Backbone.CompositeView.extend({
     event.preventDefault();
     var annotation = this.model.annotations()
                                .get($(event.currentTarget).attr('href'));
-   this.annotationView.switchAnnotation(annotation);
-   this.annotationForm.hide();
-   this.annotationView.show();
+                               
+    if (!this.annotationView) {
+      this.createAnnotationView(annotation);
+    } else {
+      this.annotationView.switchAnnotation(annotation);
+    }
+    if (this.annotationForm) { this.annotationForm.hide() }
+    this.annotationView.show();
   },
   
   showAnnotationForm: function (event) {
@@ -153,15 +163,19 @@ App.Views.ArticleShow = Backbone.CompositeView.extend({
     }
     event.preventDefault();
     this.hidePopover();
-    var selection = this.getSelection();
+    var selection = this.getSelection(); // maybe save selection as ivar
     var newAnnotation = new App.Models.Annotation({
       article_id: this.model.id,
       slug: selection.text,
       start_index: selection.start,
       end_index: selection.end
     });
-    this.annotationForm.switchAnnotation(newAnnotation);
-    this.annotationView.hide();
+    if (!this.annotationForm) {
+      this.createAnnotationForm(newAnnotation);
+    } else {
+      this.annotationForm.switchAnnotation(newAnnotation);
+    }
+    if (this.annotationView) { this.annotationView.hide() }
     this.annotationForm.show();
   },
   

@@ -12,7 +12,6 @@ App.Views.SuggestionIndex = Backbone.View.extend({
   
   render: function () {
     console.log(this.collection);
-    // debugger
     var renderedContent = this.template({ 
       suggestions: this.collection,
       suggestable: this.collection.suggestable,
@@ -32,8 +31,14 @@ App.Views.SuggestionIndex = Backbone.View.extend({
     this.collection.create(formData.suggestion, {
       success: function (resp) {
         $form.find('textarea').val('');
-      },
+        this.render();
+      }.bind(this),
       wait: true
     });
+  },
+  
+  switchSuggestions: function(suggestions) {
+    this.collection = suggestions;
+    this.render();
   },
 });
