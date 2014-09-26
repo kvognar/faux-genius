@@ -3,15 +3,15 @@
 <script type="text/javascript">
 $(document).ready(function(){
   App.initialize({
-    
+
     <% if signed_in? %>
     user: <%= (render 'users/current_user.json.jbuilder').html_safe %>
     <% end %>
   });
-  
+
   marked.setOptions({
     sanitize: false,
-    breaks: false 
+    breaks: false
   });
 });
 </script>

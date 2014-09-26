@@ -18,15 +18,29 @@
 
 $genius-gold: rgb(255, 195, 28);
 $genius-lightgold: rgb(255, 208, 79);
+$genius-bg: rgb(20, 20, 20);
+$genius-lightgray: rgb(238, 238, 238);
+$genius-gray: rgb(204, 204, 204);
+$genius-mid-darkgray: rgb(102, 102, 102);
+$genius-darkgray: rgb(53, 53, 53);
 
 body {
   margin: 0 5%;
+  background-color: $genius-bg;
 }
 
-//#article-body {
-//  width: 50%;
-//  float: left;
-//}
+
+.navbar {
+  
+//  .navbar-h
+  .navbar-brand {
+    color: $genius-gold;
+  }
+  .navbar-brand:hover {
+    color: $genius-lightgold;
+  };
+  
+}
 
 .annotation-container {
   width: 40%;
@@ -41,7 +55,7 @@ body {
   }
   
   :hover {
-    color: white;
+    color: $genius-lightgray;
     text-decoration: none;
 //    background: $genius-lightgold;
 //    font-weight: bold;
@@ -56,21 +70,59 @@ body {
 // border-top-color: $genius-lightgold;
 //};
 
-#article-body {
-  background-color: rgb(20, 20, 20);
-  color: white;
+.article-container {
+  
+  .article-header {
+    .article-title {
+      background-color: $genius-gold;
+      width: 50%;
+    }
+    .article-artist {
+      color: white;
+    }
+  }
+  
+  #article-body {
+    background-color: rgb(20, 20, 20);
+    color: $genius-gray;
+    font-size: 14px;
+  
+    a {
+      background-color: $genius-darkgray;
+      color: white;
+      text-decoration: none;
+    }
+  
+    a:hover {
+      background-color: $genius-gold;
+      color: black;
+    };
+  }
+  
 }
 
-#article-body a {
-  background-color: gray;
-  color: white;
-  text-decoration: none;
+.annotation-container {
+  color: $genius-lightgray;
+  border-left: thin solid $genius-gold;
+  
+  .annotation-contents {
+  }
 }
 
-#article-body a:hover {
-  background-color: $genius-gold;
-  color: black;
-};
+.suggestion-list {
+
+  list-style-type: none;
+
+  .suggestion-content {
+    color: $genius-lightgray;
+    border: thin solid $genius-mid-darkgray;
+  
+    .suggestion-header {
+      border-bottom: thin solid $genius-mid-darkgray;
+    }
+  }
+
+}
 
 #new-article-form {
   textarea {

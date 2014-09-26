@@ -1,7 +1,11 @@
 <div class="article-container">
   <div class="article-header">
-    <h2><%= article.escape('title') %></h2>
-    <h4><%= article.escape('artist') %></h4>
+    <div class="article-title">
+      <h2><%= article.escape('title') %></h2>
+    </div>
+    <div class="article-artist">
+      <h4><%= article.escape('artist') %></h4>
+    </div>
   </div>
   <div class="row">
     <div class="article-text col-md-7"></div>

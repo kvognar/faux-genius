@@ -1,4 +1,6 @@
-<p><%= marked(annotation.escape('body')) %></p>
+<div class="annotation-contents">
+  <p class="annotation-body"><%= marked(annotation.escape('body')) %></p>
 
-<h6>(annotation of "<%= annotation.escape('slug') %>")</h6>
-<div class="suggestions-container col-md-6"></div>
+  <h6>(annotation of "<%= annotation.escape('slug') %>")</h6>
+  <div class="suggestions-container col-md-6"></div>
+</div>
