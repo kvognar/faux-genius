@@ -5,7 +5,16 @@ App.Views.ArticleShow = Backbone.CompositeView.extend({
   initialize: function () {
     this.listenTo(this.model, 'sync', this.render);
     this.listenTo(this.model.annotations(), 'created', this.refreshText);
-    
+    this.initializeSubviews();
+  },
+  
+  events: {
+    'mouseup #article-body': 'promptAnnotate',
+    'click .annotation-prompt a': 'showAnnotationForm',
+    'click #article-body a': 'showAnnotation',
+  },
+  
+  initializeSubviews: function () {
     this.annotationView = new App.Views.AnnotationShow({
       model: new App.Models.Annotation()
     });
@@ -22,15 +31,16 @@ App.Views.ArticleShow = Backbone.CompositeView.extend({
       model: this.model
     });
     this.addSubview('.article-text', this.articleText);
+    
+    this.suggestionsView = new App.Views.SuggestionIndex({
+      collection: this.model.suggestions(),
+      article: this.model,
+      suggestableType: "Article"
+    });
+    this.addSubview('.suggestions-container', this.suggestionsView);
 
     this.annotationForm.hide();
     
-  },
-  
-  events: {
-    'mouseup #article-body': 'promptAnnotate',
-    'click .annotation-prompt a': 'showAnnotationForm',
-    'click #article-body a': 'showAnnotation',
   },
   
   
@@ -166,6 +176,7 @@ App.Views.ArticleShow = Backbone.CompositeView.extend({
       placement: 'top'
     });
     console.log($('.popover'));
+    console.log(selectionBox);
     // without timeout Bootstrap will re-set popover position
     setTimeout(function () {
       $('.popover').css({
@@ -176,6 +187,7 @@ App.Views.ArticleShow = Backbone.CompositeView.extend({
    $('#article-body').popover('show');
    this.delegateEvents();
   },
+  
   
   
   _debugPrint: function(selection) {

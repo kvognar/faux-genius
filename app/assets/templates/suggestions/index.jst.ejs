@@ -1,0 +1,32 @@
+<% if (suggestable) { %>
+
+<form class="suggestion-form">
+  <input type="hidden" 
+         name="suggestion[suggestable_id]" 
+         value="<%= suggestable.id %>">
+  <input type="hidden"
+         name="suggestion[suggestable_type]"
+         value="<%= suggestableType %>">
+  <textarea placeholder="Suggest an improvement or misdirection"
+            name="suggestion[body]"></textarea>
+  <input type="submit" value="Post suggestion">
+</form>
+<% } %>
+
+<ul class="suggestion-list">
+  <% suggestions.each(function (suggestion) { %>
+  <li>
+    <div class="suggestion-content">
+      <div class="suggestion-header">
+        <h4>Posted by user #<%= suggestion.escape('author_id') %></h4>
+        <span class="suggestion-date">
+          <%= suggestion.escape('created_at') %>
+        </span>
+      </div>
+      <div class="suggestion-body">
+        <%= suggestion.escape('body') %>
+      </div>
+    </div>
+  </li>
+  <% }); %>
+</ul>

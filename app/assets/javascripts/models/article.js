@@ -10,6 +10,16 @@ App.Models.Article = Backbone.Model.extend({
     return this._annotations;
   },
   
+  suggestions: function () {
+    if (this._suggestions === undefined) {
+      this._suggestions = new App.Collections.Suggestions([], {
+        suggestable: this,
+        suggestableType: "Article"
+      });
+    }
+    return this._suggestions;
+  },
+  
   parse: function (response) {
     var article = this;
     if (response.annotations) {
@@ -19,6 +29,14 @@ App.Models.Article = Backbone.Model.extend({
       });
       delete response.articles;
     }
+    if (response.suggestions) {
+      _.each(response.suggestions, function (suggestion) {
+        newSuggestion = new App.Models.Suggestion(suggestion);
+        article.suggestions().add(newSuggestion);
+      });
+      delete response.suggestions;
+    }
+    
     return response;
   }
 });

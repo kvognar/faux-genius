@@ -22,4 +22,8 @@ class Suggestion < ActiveRecord::Base
     primary_key: :id
   )
   
+  # def post_date
+  #   time_ago_in_words(self.created_at)
+  # end
+  
 end

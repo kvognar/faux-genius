@@ -5,7 +5,8 @@ json.suggestions @article.suggestions,
                  :author_id, 
                  :body, 
                  :suggestable_id, 
-                 :suggestable_type
+                 :suggestable_type,
+                 :created_at
 
 json.annotations @article.annotations do |annotation|
   json.extract! annotation,
@@ -15,6 +16,7 @@ json.annotations @article.annotations do |annotation|
                 :slug,
                 :body,
                 :id
+                
   json.suggestions annotation.suggestions,
                    :id, 
                    :author_id, 
