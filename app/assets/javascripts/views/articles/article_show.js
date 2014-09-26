@@ -181,14 +181,19 @@ App.Views.ArticleShow = Backbone.CompositeView.extend({
   
   showPopover: function (selection) {
     console.log('showing popover');
+    var $articleBody = $('#article-body');
     var selectionBox = selection.obj.getRangeAt(0).getBoundingClientRect();
-    $('#article-body').popover({
-      container: '.article-container',
-      trigger: 'manual',
-      content: "Annotate",
-      template: this.popoverTemplate().toString(),
-      placement: 'top'
-    });
+    // $('#article-body').data('bs.popover', null); 
+    if (!$articleBody.data('bs.popover')){
+
+      $articleBody.popover({
+        container: '.article-container',
+        trigger: 'manual',
+        content: "Annotate",
+        template: this.popoverTemplate().toString(),
+        placement: 'top'
+      });
+    }
     console.log($('.popover'));
     console.log(selectionBox);
     // without timeout Bootstrap will re-set popover position
@@ -198,7 +203,7 @@ App.Views.ArticleShow = Backbone.CompositeView.extend({
         left: selectionBox.right - 50
       });
     }, 0);
-   $('#article-body').popover('show');
+   $articleBody.popover('show');
    this.delegateEvents();
   },
   

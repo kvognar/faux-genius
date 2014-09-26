@@ -1,4 +1,4 @@
-<% if (suggestable) { %>
+<% if (suggestable && App.user) { %>
 
 <form class="suggestion-form">
   <input type="hidden" 
@@ -7,9 +7,12 @@
   <input type="hidden"
          name="suggestion[suggestable_type]"
          value="<%= suggestableType %>">
-  <textarea placeholder="Suggest an improvement or misdirection"
-            name="suggestion[body]"></textarea>
-  <input type="submit" value="Post suggestion">
+  <div class="form-group">
+    <textarea placeholder="Suggest an improvement or misdirection"
+              class="form-control"
+              rows="3"
+              name="suggestion[body]"></textarea>
+  <input type="submit" class="btn btn-default" value="Post suggestion">
 </form>
 <% } %>
 

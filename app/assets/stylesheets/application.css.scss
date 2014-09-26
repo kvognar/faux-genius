@@ -112,6 +112,7 @@ body {
 .suggestion-list {
 
   list-style-type: none;
+  padding: 0;
 
   .suggestion-content {
     color: $genius-lightgray;
@@ -132,7 +133,9 @@ body {
   }
 }
 
-.suggestion-form textarea {
+.suggestion-form textarea.form-control {
   width: 100%;
+  background: #333;
+  color: #ccc;
   
 }

@@ -8,7 +8,6 @@ class Api::ArticlesController < ApplicationController
   def show
     @article = Article.includes(:suggestions, 
                                 annotations: :suggestions).find(params[:id])
-    # render json: @article
     render :show
   end
   
