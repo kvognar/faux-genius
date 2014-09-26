@@ -6,8 +6,12 @@ class Api::ArticlesController < ApplicationController
   end
   
   def show
-    @article = Article.includes(:suggestions, 
-                                annotations: :suggestions).find(params[:id])
+    @article = Article.includes(
+                                :artist,
+                                :album,
+                                suggestions: :author, 
+                                annotations: {suggestions: :author}
+                                ).find(params[:id])
     render :show
   end
   

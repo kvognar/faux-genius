@@ -8,6 +8,8 @@
 #  body       :text             not null
 #  created_at :datetime
 #  updated_at :datetime
+#  artist_id  :integer          not null
+#  album_id   :integer
 #
 
 class Article < ActiveRecord::Base
@@ -17,6 +19,8 @@ class Article < ActiveRecord::Base
   
   has_many :annotations
   has_many :suggestions, as: :suggestable
+  belongs_to :artist
+  belongs_to :album
   
   private
   

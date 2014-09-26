@@ -8,6 +8,8 @@
 #  body       :text             not null
 #  created_at :datetime
 #  updated_at :datetime
+#  artist_id  :integer          not null
+#  album_id   :integer
 #
 
 require 'test_helper'

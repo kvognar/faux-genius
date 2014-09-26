@@ -14,7 +14,15 @@
 
 class Annotation < ActiveRecord::Base
   validates :start_index, :end_index, :body, :article, :slug, presence: true
+  # TODO !
+  # validate :no_overlap_with_neighbor_annotations
   
   belongs_to :article
   has_many :suggestions, as: :suggestable
+  
+  private
+  
+  # def no_overlap_with_neighbor_annotations
+  #
+  # end
 end

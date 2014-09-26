@@ -180,10 +180,9 @@ App.Views.ArticleShow = Backbone.CompositeView.extend({
   },
   
   showPopover: function (selection) {
-    console.log('showing popover');
     var $articleBody = $('#article-body');
     var selectionBox = selection.obj.getRangeAt(0).getBoundingClientRect();
-    // $('#article-body').data('bs.popover', null);
+    // $('#article-body').data('bs.popover', null); // something to keep in mind
     if (!$articleBody.data('bs.popover')){
 
       $articleBody.popover({
@@ -193,8 +192,6 @@ App.Views.ArticleShow = Backbone.CompositeView.extend({
         placement: 'top'
       });
     }
-    console.log($('.popover'));
-    console.log(selectionBox);
     // without timeout Bootstrap will re-set popover position
     setTimeout(function () {
       $('.popover').css({
@@ -203,7 +200,6 @@ App.Views.ArticleShow = Backbone.CompositeView.extend({
       });
     }, 0);
    $articleBody.popover('show');
-   this.delegateEvents();
   },
   
   

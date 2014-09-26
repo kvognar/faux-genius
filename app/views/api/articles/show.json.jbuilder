@@ -1,12 +1,19 @@
-json.(@article, :id, :title, :artist, :body)
+json.extract! @article, :id, :title, :body
 
-json.suggestions @article.suggestions, 
+json.artist @article.artist, :name, :description, :image_url
+
+json.album @article.album, :title
+
+json.suggestions @article.suggestions do |suggestion|
+  json.extract! suggestion,
                  :id, 
-                 :author_id, 
                  :body, 
                  :suggestable_id, 
                  :suggestable_type,
                  :created_at
+                 
+  json.author suggestion.author, :username, :id
+end
 
 json.annotations @article.annotations do |annotation|
   json.extract! annotation,
@@ -17,12 +24,15 @@ json.annotations @article.annotations do |annotation|
                 :body,
                 :id
                 
-  json.suggestions annotation.suggestions,
+  json.suggestions annotation.suggestions do |suggestion|
+    json.extract! suggestion,
                    :id, 
-                   :author_id, 
                    :body, 
                    :suggestable_id, 
                    :suggestable_type,
                    :created_at
+                   
+    json.author suggestion.author, :username, :id
+  end
 
 end
