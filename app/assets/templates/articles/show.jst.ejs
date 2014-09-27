@@ -1,11 +1,11 @@
 <div class="article-container">
   <div class="article-header">
-    <div class="article-title">
-      <h2><%= article.escape('title') %></h2>
-    </div>
-    <div class="article-artist">
+    <img src="<%= article.escape('image_url') %>">
+    <div class="article-details">
+      <h2 class="article-title"><span><%= article.escape('title') %></span></h2>
       <% if (article.artist) { %>
-      <h4><%= article.artist.escape('name') %></h4>
+        <br>
+      <h3 class="article-artist"><span><%= article.artist.escape('name') %></span></h4>
       <% } %>
     </div>
   </div>

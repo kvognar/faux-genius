@@ -38,6 +38,16 @@ class Article < ActiveRecord::Base
 
   end
   
+  def image_url
+    if album && album.image_url
+      return album.image_url
+    elsif artist.image_url
+      return artist.image_url
+    else
+      return "/assets/site/default_cover_image.png"
+    end
+  end
+  
   private
   
   def remove_invisible_characters

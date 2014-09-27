@@ -1,5 +1,5 @@
 json.array! @articles do |article|
-  json.extract! article, :title, :id
+  json.extract! article, :title, :id, :image_url
   json.artist article.artist, :name, :id, :image_url
   json.album do  
     if article.album

@@ -1,4 +1,4 @@
-json.extract! @article, :id, :title, :body
+json.extract! @article, :id, :title, :body, :image_url
 
 json.artist @article.artist, :name, :description, :image_url
 
@@ -7,7 +7,7 @@ json.album do
   if @article.album.nil?
     json.null!
   else
-    json.extract! @article.album, :title, :id
+    json.extract! @article.album, :title, :id, :image_url
   end
 end
 

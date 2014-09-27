@@ -128,6 +128,7 @@ App.Views.ArticleShow = Backbone.CompositeView.extend({
   },
   
   render: function () {
+    // debugger
     var renderedContent = this.template({ 
       article: this.model,
     });
@@ -205,9 +206,7 @@ App.Views.ArticleShow = Backbone.CompositeView.extend({
     }, 0);
    $articleBody.popover('show');
   },
-  
-  
-  
+    
   _debugPrint: function(selection) {
     console.log("Start: " + selection.start);
     console.log("End: " + selection.end);
