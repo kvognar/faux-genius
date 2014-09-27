@@ -16,7 +16,12 @@ class Api::ArticlesController < ApplicationController
   end
   
   def create
+    artist = Artist.find_by_name(artist_params[:name])
+    artist ||= Artist.create(artist_params)
+    
     @article = Article.new(article_params)
+    @article.artist = artist
+    
     if @article.save
       render json: @article
     else
@@ -32,7 +37,11 @@ class Api::ArticlesController < ApplicationController
   private
   
   def article_params
-    params.require(:article).permit(:title, :artist, :body)
+    params.require(:article).permit(:title, :body)
+  end
+  
+  def artist_params
+    params.require(:artist).permit(:name)
   end
   
 end

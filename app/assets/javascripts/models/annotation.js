@@ -27,8 +27,12 @@ App.Models.Annotation = Backbone.Model.extend({
     return this._suggestions;
   },
   
-  // parse: function (options) {
-  //   debugger
-  // },
+  parse: function (options) {
+    if (options.author) {
+      this.author = new App.Models.User(options.author);
+      delete options.author;
+    }
+    return options;
+  },
   
 });

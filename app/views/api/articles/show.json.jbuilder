@@ -2,7 +2,14 @@ json.extract! @article, :id, :title, :body
 
 json.artist @article.artist, :name, :description, :image_url
 
-json.album @article.album, :title
+
+json.album do 
+  if @article.album.nil?
+    json.null!
+  else
+    json.extract! @article.album, :title, :id
+  end
+end
 
 json.suggestions @article.suggestions do |suggestion|
   json.extract! suggestion,

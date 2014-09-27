@@ -1,9 +1,9 @@
-class Api::AnnotationsController < ActionController::Base
+class Api::AnnotationsController < ApplicationController
 
   def create
-    @annotation = Annotation.new(annotation_params)
+    @annotation = current_user.authored_annotations.new(annotation_params)
     if @annotation.save
-      render json: @annotation
+      render :show
     else
       render json: @annotation.errors.full_messages, status: :unprocessable_entity
     end

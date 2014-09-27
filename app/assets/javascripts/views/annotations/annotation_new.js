@@ -24,7 +24,6 @@ App.Views.AnnotationNew = Backbone.CompositeView.extend({
   
   show: function () {
     this.$el.show();
-    // debugger
     return this.render();
   },
   
@@ -38,6 +37,9 @@ App.Views.AnnotationNew = Backbone.CompositeView.extend({
       success: function (resp) {
         form.reset();
         form.collection.trigger('created');
+      },
+      error: function (resp) {
+        console.log(resp);
       },
       wait: true
     });

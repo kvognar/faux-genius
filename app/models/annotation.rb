@@ -15,7 +15,7 @@
 
 class Annotation < ActiveRecord::Base
   validates :start_index, :end_index, :body, 
-            :article, :slug, :author_id, presence: true
+            :article, :slug, :author, presence: true
   # TODO !
   # validate :no_overlap_with_neighbor_annotations
   

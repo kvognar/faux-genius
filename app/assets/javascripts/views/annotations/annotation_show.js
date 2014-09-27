@@ -26,7 +26,6 @@ App.Views.AnnotationShow = Backbone.CompositeView.extend({
   
   switchAnnotation: function (annotation) {
     this.model = annotation;
-    // debugger
     this.suggestionsView.switchSuggestions(this.model.suggestions());
     this.render();
   }
