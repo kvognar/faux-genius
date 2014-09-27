@@ -30,9 +30,14 @@
     
     
     <div class="searchbar-container">
-      <form class="navbar-form navbar-right" role="search">
+      <form class="navbar-form navbar-right" 
+            role="search"
+            action="<%= api_search_url %>">
         <div class="form-group">
-          <input type="text" class="form-control" placeholder="Search">
+          <input type="text" 
+                 class="form-control" 
+                 name="search[query]"
+                 placeholder="Search">
         </div>
       </form>
       <!-- <span class="glyphicon glyphicon-search"></span> -->

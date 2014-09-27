@@ -28,8 +28,13 @@ class Article < ActiveRecord::Base
     LOWER(articles.title) LIKE :query
     SQL
     
-    return Article.joins(:artist).joins(:album)
-        .where(query_string, query: "%#{query.downcase}%")
+    return Article.includes(:artist, :album).where(query_string, query: "%#{query.downcase}%").references(:artist, :album)
+
+    
+    # .joins("LEFT OUTER JOIN albums on albums.id = articles.album_id")
+    #     .joins(:artist)
+    #     .where(query_string, query: "%#{query.downcase}%")
+    #     .includes(:artist, :album)
 
   end
   
