@@ -11,7 +11,6 @@ App.Views.SuggestionIndex = Backbone.View.extend({
   },
   
   render: function () {
-    console.log(this.collection);
     var renderedContent = this.template({ 
       suggestions: this.collection,
       suggestable: this.collection.suggestable,

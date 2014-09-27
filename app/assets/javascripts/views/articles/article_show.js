@@ -115,7 +115,10 @@ App.Views.ArticleShow = Backbone.CompositeView.extend({
       // this._debugPrint(selection);
     } else {
       // TODO: needs to be hidden if ever unselected
-      this.hidePopover();
+      // debugger
+      if ($('.popover').length !== 0) {
+        this.hidePopover();
+      }
     }
   },
   
@@ -180,6 +183,7 @@ App.Views.ArticleShow = Backbone.CompositeView.extend({
   },
   
   showPopover: function (selection) {
+    console.log('pop?');
     var $articleBody = $('#article-body');
     var selectionBox = selection.obj.getRangeAt(0).getBoundingClientRect();
     // $('#article-body').data('bs.popover', null); // something to keep in mind
