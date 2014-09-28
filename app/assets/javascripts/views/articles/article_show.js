@@ -128,7 +128,6 @@ App.Views.ArticleShow = Backbone.CompositeView.extend({
   },
   
   render: function () {
-    // debugger
     var renderedContent = this.template({ 
       article: this.model,
     });

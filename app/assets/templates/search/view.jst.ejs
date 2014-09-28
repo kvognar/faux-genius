@@ -1,0 +1,28 @@
+<div class="results-summary">
+  <span class="glyphicon glyphicon-search"> </span>
+  <% if (results){ %>
+    <%= results.length %> results for '<%= query %>'
+  <% } else { %>
+    Fetching results...
+  <% } %>
+</div>
+<div class="results-container">
+  <ul>
+    <% _(results).each(function (result) { %>
+      <a href="/#/articles/<%= result.id %>">
+        <li class="search-result">
+            <div>
+            <span class="result-title">
+              <%= _.escape(result.title) %>
+            </span>
+            <br>
+            <span class="result-artist">
+              <%= _.escape(result.artist_name) %>
+            </span>
+            </div>
+        </li>
+      </a>
+      
+      <% }); %>
+  </ul>
+</div>

@@ -65,10 +65,6 @@ body {
   border-top-color: $genius-gold;
 }
 
-//.popover:hover.top .arrow:after {
-// border-top-color: $genius-lightgold;
-//};
-
 .article-container {
   
   .article-header {
@@ -218,4 +214,32 @@ body {
   background: #333;
   color: #ccc;
   
+}
+
+#search-results {
+  .results-summary {
+    .glyphicon {
+      margin-right: 4px;
+    }
+    color: white;
+    border-bottom: thin solid $genius-darkgray;
+  }
+  
+  .search-result {
+    list-style-type: none;
+    border-bottom: thin solid $genius-darkgray;
+    padding-left: 0;
+    .result-title {
+      color: white;
+    }
+    .result-artist {
+      color: $genius-gray;
+    }
+    :hover {
+      text-decoration: none;
+      border-left: 3px solid $genius-gold;
+      
+      
+    };
+  }
 }

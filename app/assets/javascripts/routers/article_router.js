@@ -2,7 +2,7 @@ App.Routers.ArticleRouter = Backbone.Router.extend({
   
   routes: {
     '': 'index',
-    'search': 'search',
+    'search/:query': 'search',
     'articles/new': 'new',
     'articles/:id': 'show',
 
@@ -10,6 +10,8 @@ App.Routers.ArticleRouter = Backbone.Router.extend({
   
   initialize: function (options) {
     this.$rootEl = options.$rootEl;
+    this.navbarView = new App.Views.NavbarView();
+    $('.searchbar-container').html(this.navbarView.render().$el);
   },
   
   index: function () {
@@ -24,7 +26,18 @@ App.Routers.ArticleRouter = Backbone.Router.extend({
     this._swapView(newView);
   },
   
-  search: function() {},
+  search: function(query) {
+    var searchResult = new App.Models.SearchResult({
+      query: query
+    });
+    searchResult.fetch({
+      success: function (result) {
+        
+      }
+    });
+    var searchView = new App.Views.SearchView({ model: searchResult });
+    this._swapView(searchView); 
+  },
   
   show: function (id) {
     var article = App.articles.getOrFetch(id);

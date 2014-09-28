@@ -11,7 +11,7 @@ Rails.application.routes.draw do
     resources :users, only: [:show]
     resources :suggestions, only: [:create, :destroy]
     
-    get '/search' => 'articles#search', as: 'search'
+    get '/search/:query' => 'articles#search', as: 'search'
   end
   
 end

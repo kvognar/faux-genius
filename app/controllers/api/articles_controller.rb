@@ -30,16 +30,12 @@ class Api::ArticlesController < ApplicationController
   end
   
   def search
-    @articles = Article.find_by_query(search_params[:query])
+    @articles = Article.find_by_query(params[:query])
     render :search
   end
   
   private
-  
-  def search_params
-    params.require(:search).permit(:query)
-  end
-  
+    
   def article_params
     params.require(:article).permit(:title, :body)
   end
