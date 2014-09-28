@@ -2,6 +2,7 @@ App.Routers.ArticleRouter = Backbone.Router.extend({
   
   routes: {
     '': 'index',
+    'search': 'search',
     'articles/new': 'new',
     'articles/:id': 'show',
 
@@ -22,6 +23,8 @@ App.Routers.ArticleRouter = Backbone.Router.extend({
     var newView = new App.Views.ArticleNew({ model: article });
     this._swapView(newView);
   },
+  
+  search: function() {},
   
   show: function (id) {
     var article = App.articles.getOrFetch(id);

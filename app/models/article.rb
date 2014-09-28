@@ -21,6 +21,7 @@ class Article < ActiveRecord::Base
   belongs_to :artist
   belongs_to :album
   
+  
   def self.find_by_query(query)
     query_string = <<-SQL
     LOWER(artists.name) LIKE :query OR
@@ -28,14 +29,15 @@ class Article < ActiveRecord::Base
     LOWER(articles.title) LIKE :query
     SQL
     
-    return Article.includes(:artist, :album).where(query_string, query: "%#{query.downcase}%").references(:artist, :album)
-
-    
-    # .joins("LEFT OUTER JOIN albums on albums.id = articles.album_id")
-    #     .joins(:artist)
-    #     .where(query_string, query: "%#{query.downcase}%")
-    #     .includes(:artist, :album)
-
+    return Article.includes(:artist, :album)
+                  .where(query_string, query: "%#{query.downcase}%")
+                  .references(:artist, :album)
+  end
+  
+  delegate :name, to: :artist, prefix: true
+  
+  def album_title
+    self.album.nil? ? nil : self.album.title
   end
   
   def image_url

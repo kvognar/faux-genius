@@ -148,6 +148,8 @@ App.Views.ArticleShow = Backbone.CompositeView.extend({
   
   showAnnotation: function (event) {
     event.preventDefault();
+    // debugger
+    $('.annotation-container').css('top', $(event.currentTarget).offset().top);
     var annotation = this.model.annotations()
                                .get($(event.currentTarget).attr('href'));
                                

@@ -1,10 +1,21 @@
-<h2>All available articles</h2>
-<ul>
-<% articles.each(function (article) { %>
-  <li>
-    <a href="/#/articles/<%= article.id %>">
-      <%= article.escape('title') %>
-    </a>
-  </li>
-<% }); %>
-</ul>
+<div class="welcome-header">
+  <h1 class="site-logo">Faux Genius</h1>
+</div>
+
+<div class="featured-articles">
+  <ul>
+  <% articles.each(function (article) { %>
+    <li>
+      <a href="/#/articles/<%= article.id %>">
+        <div class="article-block">
+          <img src="<%= article.escape('image_url') %>">
+          <div class="article-block-details">
+            <h3 class="article-title"><%= article.escape('title') %></h3>
+            <h4 class="article-artist"><%= article.escape('artist_name') %></h4>
+          </div>
+        </div>
+      </a>
+    </li>
+  <% }); %>
+  </ul>
+</div>

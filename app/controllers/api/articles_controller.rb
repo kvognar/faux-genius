@@ -1,8 +1,8 @@
 class Api::ArticlesController < ApplicationController
   
   def index
-    @articles = Article.all
-    render json: @articles
+    @articles = Article.includes(:artist, :album).all
+    render :index
   end
   
   def show

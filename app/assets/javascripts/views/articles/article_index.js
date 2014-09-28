@@ -5,6 +5,8 @@ App.Views.ArticleIndex = Backbone.View.extend({
     this.listenTo(this.collection, 'sync', this.render);
   },
   
+  id: "home-page",
+  
   render: function () {
     var renderedContent = this.template({ articles: this.collection });
     this.$el.html(renderedContent);
