@@ -286,6 +286,9 @@ a:hover {
     :hover {
       text-decoration: none;
       border-left: 3px solid $genius-gold;
+      transition: border .2s;
+      -webkit-transition: border .2s ease-in-out;
+      
       * {
         border-left: none;
       }

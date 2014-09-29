@@ -1,6 +1,8 @@
 <div class="annotation-contents">
   <div class="annotation-credit">
-    Annotation by <%= annotation.author.escape('username') %>
+    Annotation by <a href="/#/users/<%= annotation.author.id %>">
+      <%= annotation.author.escape('username') %>
+    </a>
   </div>
   <p class="annotation-body"><%= marked(annotation.escape('body')) %></p>
 
