@@ -1,0 +1,49 @@
+<div class="row">
+
+  <div class="user-info col-md-4">
+    <h1><%= user.escape('username') %></h1>
+  </div>
+
+
+
+  <div class="user-contributions col-md-7">
+    <ul class="nav nav-tabs" role="tablist">
+      <li class="active">
+        <a href="#annotations" role="tab" data-toggle="tab">
+          Annotations
+        </a>
+      </li>
+      <li>
+        <a href="#suggestions" role="tab" data-toggle="tab">
+          Suggestions
+        </a>
+      </li>
+      <li>
+        <a href="#pages" role="tab" data-toggle="tab">
+          Pages
+        </a>
+      </li>
+    </ul>
+  
+    <div class="tab-content">
+    
+      <div class="tab-pane active" id="annotations">        
+      </div>
+    
+      <div class="tab-pane" id="suggestions">
+      </div>
+    
+      <div class="tab-pane" id="pages">
+        <ul class="user-articles">
+          <% user.articles().each(function (article) { %>
+            <a href="/#/articles/article.id">
+              <li><%= article.escape('title') %></li>
+            </a>
+          <% }); %>
+        </ul>
+      </div>
+    
+    </div>
+  </div>
+
+<div class="row">

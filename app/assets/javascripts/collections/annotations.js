@@ -6,7 +6,11 @@ App.Collections.Annotations = Backbone.Collection.extend({
   },
   
   initialize: function (models, options) {
-    this.article = options.article;
+    if (options.article) {
+      this.article = options.article;
+    } else {
+      this.author = options.author;
+    }
   },
   
   model: App.Models.Annotation

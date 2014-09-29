@@ -307,3 +307,95 @@ a:hover {
     }
   }
 }
+
+#user-show {
+  color: white;
+  
+  .user-contributions {
+    .user-annotations-list {
+      list-style-type: none;
+      padding-left: 0;
+      
+      li.user-annotation {
+        border-bottom: thin solid $genius-gray;
+        
+        .annotation-header {
+          background: #222;
+          padding: 10px 20px;
+          
+          .annotation-slug {
+            color: $genius-gold;
+            :hover {
+              color: $genius-lightgold;
+            };
+          }
+          
+          
+          a {
+             color: #5ba7c2;            
+          }
+          a:hover {
+             color: #1992d5;
+           }
+
+        }
+        
+        .annotation-body {
+          background: rgb(20, 20, 20);
+          padding: 20px;
+        }
+        
+        
+      }
+    }
+    
+    .user-suggestions {
+      padding-left: 0px;
+      list-style-type: none;
+      background: rgb(30, 30, 30);
+      
+      .suggestion-context {
+        margin: 20px 10px;
+        a {
+          color: $genius-gold;
+        }
+      
+        a:hover {
+          color: $genius-lightgold;
+          text-decoration: none;
+        }
+        
+        color: #999;
+      }
+      
+      
+      li {
+        border-bottom: thin solid $genius-darkgray;
+        .suggestion-body {
+          width: 90%;
+          margin: 0 auto;
+        }
+      }
+      
+    }
+    
+    .user-articles {
+      padding-left: 0;
+      list-style-type: none;
+      
+      a {
+        color: #aaa;
+      }
+      
+      a:hover {
+        color: #ede8e9;
+      };
+      
+      li {
+        border-bottom: thin solid $genius-darkgray;
+        padding: 10px;
+      }
+    }
+  }
+  
+}

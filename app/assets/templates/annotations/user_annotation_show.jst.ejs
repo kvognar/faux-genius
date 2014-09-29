@@ -1,0 +1,11 @@
+<div class="annotation-header">
+  <h4 class="annotation-slug">“<%= annotation.escape('slug') %></h4>
+  <h6 class="annotation-article">
+    <a href="/#/articles/<%= article.id %>">
+      <%= _.escape(article.title) %> by <%= _.escape(article.artist_name) %>
+    </a>
+  </h6>
+</div>
+<div class="annotation-body">
+  <p><%= marked(annotation.escape('body')) %></p>
+</div>

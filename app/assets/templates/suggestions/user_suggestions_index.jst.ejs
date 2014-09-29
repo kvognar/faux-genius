@@ -1,0 +1,21 @@
+<ul class="user-suggestions">
+  <% suggestions.each(function (suggestion) { %>
+    <% var subj = suggestion.get('suggestable'); %>
+    <li>
+      <div class="suggestion-context">
+        <% if (suggestion.get('suggestable_type') === 'Article') {%>
+          <a href="/#/articles/<%= subj.id %>">
+            <%= _.escape(subj.artist_name) %> - <%= _.escape(subj.title) %> 
+          </a>
+          <% } else { %>
+            <a href="/#/articles/<%= subj.article.id %>">
+              "<%= _.escape(subj.slug) %>"
+            </a> (<%= _.escape(subj.article.artist_name) %> - <%= _.escape(subj.article.title) %>)
+        <% } %>
+      </div>
+      <div class="suggestion-body">
+        <%= marked(suggestion.escape('body')) %>
+      </div>
+    </li>
+  <% }); %>
+</ul>

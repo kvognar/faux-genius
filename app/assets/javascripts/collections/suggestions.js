@@ -4,8 +4,12 @@ App.Collections.Suggestions = Backbone.Collection.extend({
   comparator: 'created_at',
   
   initialize: function (models, options) {
-    this.suggestable = options.suggestable;
-    this.suggestableType = options.suggestableType;
+    if (options.author) {
+      this.author = options.author;
+    } else {
+      this.suggestable = options.suggestable;
+      this.suggestableType = options.suggestableType;
+    }
   },
   
   model: App.Models.Suggestion

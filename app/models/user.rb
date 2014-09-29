@@ -22,15 +22,19 @@ class User < ActiveRecord::Base
   has_many(
     :authored_annotations,
     class_name: "Annotation",
-    foreign_key: :author_id,
-    primary_key: :id
+    foreign_key: :author_id
   )
   
   has_many(
     :authored_suggestions,
     class_name: "Suggestion",
     foreign_key: :author_id,
-    primary_key: :id
+  )
+  
+  has_many(
+    :submitted_articles,
+    class_name: "Article",
+    foreign_key: :submitter_id,
   )
   
   def password=(password)

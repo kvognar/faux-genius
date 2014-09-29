@@ -2,13 +2,14 @@
 #
 # Table name: articles
 #
-#  id         :integer          not null, primary key
-#  title      :string(255)      not null
-#  body       :text             not null
-#  created_at :datetime
-#  updated_at :datetime
-#  artist_id  :integer          not null
-#  album_id   :integer
+#  id           :integer          not null, primary key
+#  title        :string(255)      not null
+#  body         :text             not null
+#  created_at   :datetime
+#  updated_at   :datetime
+#  artist_id    :integer          not null
+#  album_id     :integer
+#  submitter_id :integer          not null
 #
 
 class Article < ActiveRecord::Base
@@ -20,6 +21,7 @@ class Article < ActiveRecord::Base
   has_many :suggestions, as: :suggestable, dependent: :destroy
   belongs_to :artist
   belongs_to :album
+  belongs_to :submitter, class_name: "User"
   
   
   def self.find_by_query(query)

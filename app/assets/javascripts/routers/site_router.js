@@ -7,6 +7,7 @@ App.Routers.SiteRouter = Backbone.Router.extend({
     'articles/:id': 'show',
     'artists/:id': 'showArtist',
     'albums/:id': 'showAlbum',
+    'users/:id': 'showUser',
   },
   
   initialize: function (options) {
@@ -58,6 +59,13 @@ App.Routers.SiteRouter = Backbone.Router.extend({
     artist.fetch();
     var artistView = new App.Views.ArtistShow({ model: artist });
     this._swapView(artistView);
+  },
+  
+  showUser: function (id) {
+    var user = new App.Models.User({ id: id });
+    user.fetch();
+    var userView = new App.Views.UserShow({ model: user });
+    this._swapView(userView);
   },
   
   _swapView: function (view) {

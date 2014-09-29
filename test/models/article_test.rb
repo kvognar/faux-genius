@@ -2,13 +2,14 @@
 #
 # Table name: articles
 #
-#  id         :integer          not null, primary key
-#  title      :string(255)      not null
-#  body       :text             not null
-#  created_at :datetime
-#  updated_at :datetime
-#  artist_id  :integer          not null
-#  album_id   :integer
+#  id           :integer          not null, primary key
+#  title        :string(255)      not null
+#  body         :text             not null
+#  created_at   :datetime
+#  updated_at   :datetime
+#  artist_id    :integer          not null
+#  album_id     :integer
+#  submitter_id :integer          not null
 #
 
 require 'test_helper'
