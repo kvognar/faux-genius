@@ -1,0 +1,24 @@
+<h1 class="album-title"><%= album.escape('title') %></h1>
+<% if (album.artist){ %>
+  <h3 class="album-artist"><%= album.artist.escape('name') %></h3>
+<% } %>
+
+<div class="row">
+  <div class="col-md-5 album-art">
+    <img src="<%= album.escape('image_url') %>">
+  </div>
+  <div class="col-md-6 ">
+    <ul class="article-list">
+      <% album.articles().each(function (article) { %>
+        <a href="/#/articles/<%= article.id %>">
+        <li>
+          <span class="article-title">
+            <%= article.escape('title') %>
+          </span>
+        </li>
+      </a>
+      <% }); %>
+    </ul>
+  </div>
+</div>
+    

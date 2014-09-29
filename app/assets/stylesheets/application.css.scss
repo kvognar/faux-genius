@@ -30,6 +30,10 @@ body {
   box-sizing: border-box;
 }
 
+a:hover {
+  text-decoration: none;
+};
+
 
 .navbar {
   
@@ -140,7 +144,6 @@ body {
 }
 
 .suggestion-list {
-
   list-style-type: none;
   padding: 0;
 
@@ -225,21 +228,82 @@ body {
     border-bottom: thin solid $genius-darkgray;
   }
   
-  .search-result {
-    list-style-type: none;
-    border-bottom: thin solid $genius-darkgray;
-    padding-left: 0;
-    .result-title {
-      color: white;
+//  .search-result {
+//
+//
+//    }
+  
+}
+
+#artist-show {
+  color: white;
+  
+  h1.artist-name {
+    border-bottom: thin solid white;
+  }
+  
+  .artist-details {
+    img {
+      width: 100%;
     }
-    .result-artist {
-      color: $genius-gray;
+    pre {
+      word-wrap: normal;
     }
+    
+    .artist-album-list {
+      list-style-type: none;
+      padding-left: 0;
+      a {
+        li {
+          border-top: thin solid $genius-darkgray;
+        }
+        
+        color: #5ba7c2;
+        :hover {
+          color: white;
+        };
+      }
+    }
+  }
+}
+
+.article-list { // used on search results and artist show
+  list-style-type: none;
+  padding-left: 0;
+  a { 
+    li {
+      border-bottom: thin solid $genius-darkgray;
+    
+      .article-title {
+        color: white;
+      }
+    
+      .article-artist {
+        color: $genius-gray;
+      }
+    }
+    
     :hover {
       text-decoration: none;
       border-left: 3px solid $genius-gold;
-      
-      
+      * {
+        border-left: none;
+      }
     };
+  } 
+}
+
+#album-show {
+  h1.album-title {
+    color: white;
+  }
+  .album-artist {
+    color: $genius-lightgray;
+  }
+  
+  .album-art {
+    img {
+      width: 100%;
+    }
   }
 }

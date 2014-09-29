@@ -5,7 +5,9 @@
       <h2 class="article-title"><span><%= article.escape('title') %></span></h2>
       <% if (article.artist) { %>
         <br>
-      <h3 class="article-artist"><span><%= article.artist.escape('name') %></span></h4>
+        <a href="/#/artists/<%= article.artist.id %>">
+          <h3 class="article-artist"><span><%= article.artist.escape('name') %></span></h3>
+        </a>
       <% } %>
     </div>
   </div>

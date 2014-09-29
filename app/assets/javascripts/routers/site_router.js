@@ -1,11 +1,12 @@
-App.Routers.ArticleRouter = Backbone.Router.extend({
+App.Routers.SiteRouter = Backbone.Router.extend({
   
   routes: {
     '': 'index',
     'search/:query': 'search',
     'articles/new': 'new',
     'articles/:id': 'show',
-
+    'artists/:id': 'showArtist',
+    'albums/:id': 'showAlbum',
   },
   
   initialize: function (options) {
@@ -43,6 +44,20 @@ App.Routers.ArticleRouter = Backbone.Router.extend({
     var article = App.articles.getOrFetch(id);
     var showView = new App.Views.ArticleShow({ model: article });
     this._swapView(showView);
+  },
+  
+  showAlbum: function (id) {
+    var album = new App.Models.Album({ id: id });
+    album.fetch();
+    var albumView = new App.Views.AlbumShow({ model: album });
+    this._swapView(albumView);
+  },
+  
+  showArtist: function (id) {
+    var artist = new App.Models.Artist({ id: id });
+    artist.fetch();
+    var artistView = new App.Views.ArtistShow({ model: artist });
+    this._swapView(artistView);
   },
   
   _swapView: function (view) {

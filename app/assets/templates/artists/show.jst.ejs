@@ -1,0 +1,34 @@
+<h1 class="artist-name"><%= artist.escape('name') %></h1>
+
+<div class="row">
+  
+  <div class="col-md-7">
+    <ul class="artist-article-list article-list">
+    <% artist.articles().each(function (article) { %>
+      <a href="/#/articles/<%= article.id %>">
+        <li>
+          <span class="article-title">
+            <%= article.escape('title') %>
+          </span>
+        </li>
+      </a>
+    <% }); %>
+    </ul>
+  </div>
+  
+  <div class="col-md-5 artist-details">
+    <img src="<%= artist.escape('image_url') %>">
+    <h4>About <%= artist.escape('name') %></h4>
+    <p><%= marked(artist.escape('description')) %></p>
+    
+    <h4><%= artist.escape('name') %>'s Albums</h4>
+    <ul class="artist-album-list">
+      <% artist.albums().each(function (album) { %>
+        <a href="/#/albums/<%= album.id %>">
+          <li><%= album.escape('title') %></li>
+        </a>
+      <% }); %>
+    </ul>
+  </div>
+  
+</div>

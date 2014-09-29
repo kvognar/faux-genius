@@ -9,7 +9,7 @@
       App.user = new App.Models.User(options.user);
     }
     App.articles = new App.Collections.Articles();
-    this.router = new App.Routers.ArticleRouter({
+    this.router = new App.Routers.SiteRouter({
       $rootEl: $('#content')
     });
     

@@ -1,6 +1,6 @@
 json.extract! @article, :id, :title, :body, :image_url
 
-json.artist @article.artist, :name, :description, :image_url
+json.artist @article.artist, :name, :description, :image_url, :id
 
 
 json.album do 

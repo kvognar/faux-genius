@@ -10,6 +10,8 @@ Rails.application.routes.draw do
     resources :annotations, only: [:create, :update, :destroy]
     resources :users, only: [:show]
     resources :suggestions, only: [:create, :destroy]
+    resources :artists, only: [:show, :update]
+    resources :albums, only: [:show, :update]
     
     get '/search/:query' => 'articles#search', as: 'search'
   end

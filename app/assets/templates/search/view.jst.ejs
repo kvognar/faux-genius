@@ -7,16 +7,16 @@
   <% } %>
 </div>
 <div class="results-container">
-  <ul>
+  <ul class="article-list">
     <% _(results).each(function (result) { %>
       <a href="/#/articles/<%= result.id %>">
         <li class="search-result">
             <div>
-            <span class="result-title">
+            <span class="article-title">
               <%= _.escape(result.title) %>
             </span>
             <br>
-            <span class="result-artist">
+            <span class="article-artist">
               <%= _.escape(result.artist_name) %>
             </span>
             </div>
