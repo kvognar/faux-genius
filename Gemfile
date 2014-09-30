@@ -55,3 +55,5 @@ gem 'bootstrap-sass'
 
 # Make seed file from test db
 gem 'seed_dump'
+
+gem 'filepicker-rails'

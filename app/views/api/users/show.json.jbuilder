@@ -1,4 +1,4 @@
-json.extract! @user, :username, :id
+json.extract! @user, :username, :id, :image_url
 json.articles @user.submitted_articles, :title, :id
 
 json.suggestions @user.authored_suggestions do |suggestion|

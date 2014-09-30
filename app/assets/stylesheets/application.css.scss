@@ -314,6 +314,12 @@ a:hover {
 #user-show {
   color: white;
   
+  .user-info {
+    img {
+      width: 100%;
+    }
+  }
+  
   .user-contributions {
     .user-annotations-list {
       list-style-type: none;

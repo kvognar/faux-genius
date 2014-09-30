@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   namespace :api, defaults: { format: :json } do
     resources :articles, only: [:index, :show, :create]
     resources :annotations, only: [:create, :update, :destroy]
-    resources :users, only: [:show]
+    resources :users, only: [:show, :update]
     resources :suggestions, only: [:create, :destroy]
     resources :artists, only: [:show, :update]
     resources :albums, only: [:show, :update]

@@ -5,6 +5,11 @@
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+  <%= filepicker_js_include_tag %>
+  
+  <script>
+  filepicker.setKey("A1g3pYmOQRCGVFAqgBdfBz");
+  </script>
 </head>
 <body>
   
@@ -14,6 +19,7 @@
     <div><%= message %></div>
   <% end %>
 <% end %>
+
 
 <% unless signed_in? %>
   <%= render partial: 'users/modals' %>

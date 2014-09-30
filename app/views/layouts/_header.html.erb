@@ -1,7 +1,8 @@
 <nav class="navbar navbar-inverse" role="navigation">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="/#/">Rap Genome</a>
+      <a class="navbar-brand" href="/#/">  <%= ENV['FILEPICKER_API_KEY'] %>
+Rap Genome</a>
     </div>
     
 
@@ -11,6 +12,9 @@
       <% if signed_in? %>
       <li>
         <a href="/#/articles/new">Create</a>
+      </li>
+      <li>
+        <%= link_to current_user.username, "/#/users/#{current_user.id}" %>
       </li>
       <li>
         <%= link_to 'Sign out', session_url, method: :delete %>
