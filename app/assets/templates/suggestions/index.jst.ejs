@@ -22,12 +22,10 @@
     <div class="suggestion-content">
       <div class="suggestion-header">
         <h4>Posted by <%= suggestion.author.escape('username') %></h4>
-        <span class="suggestion-date">
-          <%= suggestion.escape('created_at') %>
-        </span>
+        <time class="suggestion-date timeago"><%= $.timeago(new Date(suggestion.escape('created_at'))) %></time>
       </div>
       <div class="suggestion-body">
-        <%= suggestion.escape('body') %>
+        <%= marked(suggestion.escape('body')) %>
       </div>
     </div>
   </li>

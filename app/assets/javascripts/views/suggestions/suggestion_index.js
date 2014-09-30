@@ -17,6 +17,7 @@ App.Views.SuggestionIndex = Backbone.View.extend({
       suggestableType: this.collection.suggestableType   
      });
     this.$el.html(renderedContent);
+    $('abbr.timeago').timeago();
     
     return this;
   },

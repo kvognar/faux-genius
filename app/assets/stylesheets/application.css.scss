@@ -15,7 +15,14 @@
  */
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import url(http://fonts.googleapis.com/css?family=Abel);
+@import url(http://fonts.googleapis.com/css?family=Titillium+Web:600);
+@font-face {
+  font-family: 'Din Condensed';
+  src:url('DINCondensedCyrillic.ttf');
+}
 
+$genius-font: 'Abel';
 $genius-gold: rgb(255, 195, 28);
 $genius-lightgold: rgb(255, 208, 79);
 $genius-bg: rgb(20, 20, 20);
@@ -38,6 +45,7 @@ a:hover {
 .navbar {
   
   .navbar-brand {
+    font-family: $genius-font, sans-serif;
     color: $genius-gold;
   }
   .navbar-brand:hover {
@@ -96,6 +104,7 @@ a:hover {
         margin: 0;
         width: 100%;
         display: inline;
+        
       }
       
       .article-title {
@@ -110,7 +119,7 @@ a:hover {
       span {
         letter-spacing: -1px;
         padding: 10px;
-        font-family: DinCondensed, sans-serif;
+        font-family: $genius-font, sans-serif;
       }
     }
     
@@ -150,6 +159,9 @@ a:hover {
   .suggestion-content {
     color: $genius-lightgray;
     border: thin solid $genius-mid-darkgray;
+    img {
+      max-width: 100%;
+    }
   
     .suggestion-header {
       border-bottom: thin solid $genius-mid-darkgray;
@@ -171,10 +183,13 @@ a:hover {
       transform: translate(-50%, -50%);
       display: inline;
       color: $genius-gold;
+      font-family: $genius-font;
     }
   }
   
   .featured-articles {
+    
+    font-family: $genius-font;
     
     li {
       display: inline-block;
@@ -317,6 +332,11 @@ a:hover {
   .user-info {
     img {
       width: 100%;
+    }
+    h1 {
+      font-family: $genius-font, sans-serif;
+      color: $genius-gold;
+      border-bottom: 2px solid $genius-gold;
     }
   }
   
