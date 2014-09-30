@@ -23,3 +23,5 @@ json.annotations @user.authored_annotations do |annotation|
   json.extract! annotation, :body, :slug, :created_at
   json.article annotation.article, :title, :artist_name, :id
 end
+
+json.followed !!current_user && current_user.followed_users.include?(@user)

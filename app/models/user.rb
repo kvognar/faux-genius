@@ -38,6 +38,37 @@ class User < ActiveRecord::Base
     foreign_key: :submitter_id,
   )
   
+  has_many :followings, class_name: "Relationship", as: :followed
+  has_many :followers, through: :followings
+  
+  has_many(
+    :relationships,
+    class_name: "Relationship",
+    foreign_key: :follower_id,
+  )
+  
+  has_many :followed_users, 
+            through: :relationships,
+            source: :followed,
+            source_type: "User"
+  
+  has_many :followed_articles, 
+            through: :relationships, 
+            source: :followed,
+            source_type: "Article"
+            
+  has_many :followed_artists,
+            through: :relationships,
+            source: :followed,
+            source_type: "Artist"
+            
+  def followed_items
+    followed_items = {}
+    followed_items[:users] = relationships.pluck(:followed_id, :followed_type)
+                                          .select {|r| r[1] == "User"}
+    followed_items
+  end
+  
   def password=(password)
     @password = password
     self.password_hash = BCrypt::Password.create(password)

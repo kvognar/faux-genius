@@ -14,4 +14,7 @@ class Artist < ActiveRecord::Base
   validates :name, presence: true
   has_many :albums
   has_many :articles
+  
+  has_many :followings, class_name: "Relationships", as: :followed
+  has_many :followers, through: :followings
 end

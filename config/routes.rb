@@ -12,6 +12,7 @@ Rails.application.routes.draw do
     resources :suggestions, only: [:create, :destroy]
     resources :artists, only: [:show, :update]
     resources :albums, only: [:show, :update]
+    resources :relationships, only: [:create, :destroy]
     
     get '/search/:query' => 'articles#search', as: 'search'
   end

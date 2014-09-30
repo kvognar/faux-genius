@@ -1,1 +1,1 @@
-json.(@current_user, :username, :id)
+json.(@current_user, :username, :id, :image_url)

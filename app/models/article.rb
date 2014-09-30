@@ -23,6 +23,9 @@ class Article < ActiveRecord::Base
   belongs_to :album
   belongs_to :submitter, class_name: "User"
   
+  has_many :followings, class_name: "Relationship", as: :followed
+  has_many :followers, through: :followings
+  
   
   def self.find_by_query(query)
     query_string = <<-SQL
