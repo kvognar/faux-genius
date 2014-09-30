@@ -10,6 +10,16 @@ App.Models.Article = Backbone.Model.extend({
     return this._annotations;
   },
   
+  followings: function () {
+    if (!this._followings) {
+      this._followings = new App.Collections.Followings([], {
+        followed: this,
+        followedType: "Article"
+      });
+    }
+    return this._followings;
+  },
+  
   suggestions: function () {
     if (this._suggestions === undefined) {
       this._suggestions = new App.Collections.Suggestions([], {
@@ -46,6 +56,11 @@ App.Models.Article = Backbone.Model.extend({
     if (response.album) {
       this.album = new App.Models.Album(response.album);
       delete response.album;
+    }
+    
+    if (response.followings) {
+      this.followings().set(response.followings);
+      delete response.followings;
     }
     
     return response;

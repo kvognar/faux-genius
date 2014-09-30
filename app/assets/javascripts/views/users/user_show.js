@@ -8,6 +8,13 @@ App.Views.UserShow = Backbone.CompositeView.extend({
   
   initialize: function () {
     this.listenTo(this.model, 'sync', this.render);
+    
+    this.followButton = new App.Views.RelationshipButton({
+      collection: this.model.followings()
+    });
+    this.addSubview('.follow-button-container', this.followButton);
+    
+    
     this.annotationsView = new App.Views.UserAnnotationsIndex({
       collection: this.model.annotations()
     });

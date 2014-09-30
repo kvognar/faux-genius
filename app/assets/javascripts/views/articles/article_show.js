@@ -15,7 +15,11 @@ App.Views.ArticleShow = Backbone.CompositeView.extend({
   },
   
   initializeSubviews: function () {
-        
+    this.followButton = new App.Views.RelationshipButton({
+      collection: this.model.followings()
+    });
+    this.addSubview('.follow-button-container', this.followButton);
+    
     this.articleText = new App.Views.ArticleText({
       model: this.model
     });

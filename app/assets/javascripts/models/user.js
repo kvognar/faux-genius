@@ -1,6 +1,15 @@
 App.Models.User = Backbone.Model.extend({
   urlRoot: 'api/users',
   
+  annotations: function () {
+    if (!this._annotations) {
+      this._annotations = new App.Collections.Annotations([], {
+        author: this
+      });
+    }
+    return this._annotations;
+  },
+  
   articles: function () {
     if (!this._submittedArticles) {
       this._submittedArticles = new App.Collections.Articles([], {
@@ -8,6 +17,16 @@ App.Models.User = Backbone.Model.extend({
       });
     }
     return this._submittedArticles;
+  },
+  
+  followings: function () {
+    if (!this._followings) {
+      this._followings = new App.Collections.Followings([], {
+        followed: this,
+        followedType: "User"
+      });
+    }
+    return this._followings;
   },
   
   suggestions: function () {
@@ -19,14 +38,8 @@ App.Models.User = Backbone.Model.extend({
     return this._suggestions;
   },
   
-  annotations: function () {
-    if (!this._annotations) {
-      this._annotations = new App.Collections.Annotations([], {
-        author: this
-      });
-    }
-    return this._annotations;
-  },
+  
+  
   
   parse: function (options) {
     if (options.articles) {
@@ -40,6 +53,11 @@ App.Models.User = Backbone.Model.extend({
     if (options.annotations) {
       this.annotations().set(options.annotations);
       delete options.annotations;
+    }
+    
+    if (options.followings) {
+      this.followings().set(options.followings);
+      delete options.followings;
     }
     return options;
   }

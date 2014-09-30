@@ -15,6 +15,6 @@ class Artist < ActiveRecord::Base
   has_many :albums
   has_many :articles
   
-  has_many :followings, class_name: "Relationships", as: :followed
+  has_many :followings, class_name: "Relationship", as: :followed
   has_many :followers, through: :followings
 end

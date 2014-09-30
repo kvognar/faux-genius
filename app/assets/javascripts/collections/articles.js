@@ -3,7 +3,7 @@ App.Collections.Articles = Backbone.Collection.extend({
   model: App.Models.Article,
   
   initialize: function (models, options) {
-    if ( options && options.submitter) {
+    if (options && options.submitter) {
       this.submitter = options.submitter;
     }
   },

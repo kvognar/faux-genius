@@ -45,4 +45,4 @@ json.annotations @article.annotations do |annotation|
 
 end
 
-json.followed !!current_user && current_user.followed_articles.include?(@article)
+json.followings @article.followings, :id, :follower_id, :followed_id, :followed_type
