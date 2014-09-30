@@ -26,6 +26,8 @@ class Article < ActiveRecord::Base
   has_many :followings, class_name: "Relationship", as: :followed
   has_many :followers, through: :followings
   
+  has_many :outgoing_notifications, class_name: "Notification", as: :notable
+  
   
   def self.find_by_query(query)
     query_string = <<-SQL
@@ -52,6 +54,17 @@ class Article < ActiveRecord::Base
       return artist.image_url
     else
       return "/assets/site/default_cover_image.png"
+    end
+  end
+  
+  def bubble_notifications(source = self)
+    transaction do
+      self.followers.each do |follower|
+        notification = follower.incoming_notifications.new(notable: self)
+        notification.source = source
+        notification.save!
+      end
+      self.artist.bubble_notifications(source)
     end
   end
   

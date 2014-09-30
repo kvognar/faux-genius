@@ -20,32 +20,24 @@ class User < ActiveRecord::Base
   
   attr_reader :password
   
-  has_many(
-    :authored_annotations,
-    class_name: "Annotation",
-    foreign_key: :author_id
-  )
+  has_many :authored_annotations,
+            class_name: "Annotation",
+            foreign_key: :author_id
   
-  has_many(
-    :authored_suggestions,
-    class_name: "Suggestion",
-    foreign_key: :author_id,
-  )
+  has_many :authored_suggestions,
+            class_name: "Suggestion",
+            foreign_key: :author_id
   
-  has_many(
-    :submitted_articles,
-    class_name: "Article",
-    foreign_key: :submitter_id,
-  )
+  has_many :submitted_articles,
+            class_name: "Article",
+            foreign_key: :submitter_id
   
   has_many :followings, class_name: "Relationship", as: :followed
   has_many :followers, through: :followings
   
-  has_many(
-    :relationships,
-    class_name: "Relationship",
-    foreign_key: :follower_id,
-  )
+  has_many :relationships,
+            class_name: "Relationship",
+            foreign_key: :follower_id
   
   has_many :followed_users, 
             through: :relationships,
@@ -61,6 +53,18 @@ class User < ActiveRecord::Base
             through: :relationships,
             source: :followed,
             source_type: "Artist"
+            
+  has_many :incoming_notifications, class_name: "Notification"
+            
+  def bubble_notifications(source)
+    transaction do
+      self.followers.each do |follower|
+        notification = follower.incoming_notifications.new(notable: self)
+        notification.source = source
+        notification.save!
+      end
+    end
+  end
             
   def followed_items
     followed_items = {}

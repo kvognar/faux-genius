@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140930162002) do
+ActiveRecord::Schema.define(version: 20140930221713) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -64,6 +64,22 @@ ActiveRecord::Schema.define(version: 20140930162002) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "notifications", force: true do |t|
+    t.integer  "user_id",      null: false
+    t.integer  "notable_id",   null: false
+    t.string   "notable_type", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "source_id",    null: false
+    t.string   "source_type",  null: false
+  end
+
+  add_index "notifications", ["notable_id"], name: "index_notifications_on_notable_id", using: :btree
+  add_index "notifications", ["notable_type"], name: "index_notifications_on_notable_type", using: :btree
+  add_index "notifications", ["source_id"], name: "index_notifications_on_source_id", using: :btree
+  add_index "notifications", ["source_type"], name: "index_notifications_on_source_type", using: :btree
+  add_index "notifications", ["user_id"], name: "index_notifications_on_user_id", using: :btree
 
   create_table "relationships", force: true do |t|
     t.integer  "follower_id",   null: false
