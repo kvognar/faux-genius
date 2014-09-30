@@ -16,8 +16,11 @@
 class Annotation < ActiveRecord::Base
   validates :start_index, :end_index, :body, 
             :article, :slug, :author, presence: true
+            
   # TODO !
   # validate :no_overlap_with_neighbor_annotations
+  
+  default_scope {order('created_at DESC')}
   
   belongs_to :article
   belongs_to :author, class_name: "User"

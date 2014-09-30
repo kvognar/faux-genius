@@ -211,7 +211,7 @@ a:hover {
         position: absolute;
         bottom: 0;
         left: 10px;
-        width: 100%;
+        width: 90%;
         color: white;
       }
     }
@@ -403,6 +403,9 @@ a:hover {
         .suggestion-body {
           width: 90%;
           margin: 0 auto;
+          img {
+            max-width: 100%;
+          }
         }
       }
       

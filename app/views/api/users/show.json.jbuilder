@@ -20,6 +20,6 @@ json.suggestions @user.authored_suggestions do |suggestion|
 end
 
 json.annotations @user.authored_annotations do |annotation|
-  json.extract! annotation, :body, :slug
+  json.extract! annotation, :body, :slug, :created_at
   json.article annotation.article, :title, :artist_name, :id
 end

@@ -1,6 +1,8 @@
 App.Collections.Annotations = Backbone.Collection.extend({
   url: 'api/annotations',
   
+  ord: 'created_at',
+  
   comparator: function (model) {
     return -1 * model.get('start_index');
   },
