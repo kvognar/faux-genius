@@ -9,7 +9,8 @@ App.Views.UserAnnotationsIndex = Backbone.CompositeView.extend({
   
   addAnnotationSubview: function (annotation) {
     var subview = new App.Views.UserAnnotationShow({
-      model: annotation
+      model: annotation,
+      author: this.collection.author
     });
     this.addSubview('.user-annotations-list', subview);
   },

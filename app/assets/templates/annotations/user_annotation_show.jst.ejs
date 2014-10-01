@@ -10,17 +10,21 @@
   <div class="annotation-body">
     <p><%= marked(annotation.escape('body')) %></p>
   </div>
-  <div class="annotation-controls">
-    <a href="#" class="edit-annotation-link">
-      edit
-    </a>
-    <span> | </span>
-    <a href="#" class="delete-annotation-link">
-      delete
-    </a>
-  </div>
+  <% if (author.id == App.user.id) { %>
+    <div class="annotation-controls">
+      <a href="#" class="edit-annotation-link">
+        edit
+      </a>
+      <span> | </span>
+      <a href="#" class="delete-annotation-link">
+        delete
+      </a>
+    </div>
+  <% } %>
 </div>
 
-<div class="annotation-form-container" style="display: none">
-  <%= formTemplate({ annotation: annotation }) %>
-</div>
+<% if (author.id == App.user.id) { %>
+  <div class="annotation-form-container" style="display: none">
+    <%= formTemplate({ annotation: annotation }) %>
+  </div>
+<% } %>

@@ -12,7 +12,8 @@ App.Views.UserAnnotationShow = Backbone.View.extend({
     'submit .annotation-form': 'updateAnnotation'
   },
   
-  initialize: function () {
+  initialize: function (options) {
+    this.author = options.author
     this.listenTo(this.model, 'sync', this.render);
   },
   
@@ -30,6 +31,7 @@ App.Views.UserAnnotationShow = Backbone.View.extend({
     var renderedContent = this.template({ 
       annotation: this.model,
       article: this.model.get('article'),
+      author: this.author,
       formTemplate: this.formTemplate
      });
     this.$el.html(renderedContent);
