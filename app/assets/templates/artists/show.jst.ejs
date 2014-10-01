@@ -18,9 +18,34 @@
   </div>
   
   <div class="col-md-5 artist-details">
-    <img src="<%= artist.escape('image_url') %>">
+    <% if (artist.escape('image_url')) { %>
+      <img src="<%= artist.escape('image_url') %>">
+    <% } else { %>
+      <button class="btn btn-default filepicker-button">
+        Add a photo
+      </button>
+    <% } %>
     <h4>About <%= artist.escape('name') %></h4>
-    <p><%= marked(artist.escape('description')) %></p>
+    <div class="artist-description">
+      <% if (artist.escape('description')) { %>
+        <p><%= marked(artist.escape('description')) %></p>
+      <% } else { %>
+        <button class="btn btn-default add-artist-description-button">
+          Add a description
+        </button>
+        
+        <form role="form" 
+              id="artist-description-form" 
+              style="display: none">
+          <textarea 
+            class="form-control" 
+            name ="artist[description]"
+            placeholder="A tale from the artist's life, or one of the artist's little-known superpowers."></textarea>
+            <input type="submit" value="Submit" class="form-control btn btn-default">
+            <button class="cancel-button btn btn-default">Cancel</button>
+        </form>
+      <% } %>
+    </div>
     
     <h4><%= artist.escape('name') %>'s Albums</h4>
     <ul class="artist-album-list">

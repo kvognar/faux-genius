@@ -5,4 +5,19 @@ class Api::ArtistsController < ApplicationController
     render :show
   end
   
+  def update
+    @artist = Artist.find(params[:id])
+    if @artist.update_attributes(artist_params)
+      render json: @artist
+    else
+      render json: @artist.errors, status: :unprocessable_entity
+    end
+  end
+  
+  private
+  
+  def artist_params
+    params.require(:artist).permit(:description, :image_url)
+  end
+  
 end
