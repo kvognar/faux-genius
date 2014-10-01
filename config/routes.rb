@@ -13,6 +13,7 @@ Rails.application.routes.draw do
     resources :artists, only: [:show, :update]
     resources :albums, only: [:show, :update]
     resources :relationships, only: [:create, :destroy]
+    resources :notifications, only: [:index]
     
     get '/search/:query' => 'articles#search', as: 'search'
   end

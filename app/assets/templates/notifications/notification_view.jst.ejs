@@ -1,0 +1,13 @@
+<a href="#"
+   class="dropdown-toggle"
+   data-toggle="dropdown"><%= notifications.length %></a>
+   
+<ul class="dropdown-menu" role="menu">
+  <% notifications.each(function (notification) { %>
+    <li>
+      <a href="/#/articles/<%= notification.get('article').id %>">
+        <%= _.escape(notification.get('article').title) %>
+      </a>
+    </li>
+  <% }); %>
+</ul>
