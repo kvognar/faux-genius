@@ -9,6 +9,11 @@ class Api::AnnotationsController < ApplicationController
     end
   end
   
+  def show
+    @annotation = Annotation.find(params[:id])
+    render :show
+  end
+  
   def update
     @annotation = Annotation.find(params[:id])
     if @annotation.update(annotation_update_params)

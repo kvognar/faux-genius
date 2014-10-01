@@ -19,6 +19,7 @@ App.Views.UserAnnotationShow = Backbone.View.extend({
   
   deleteAnnotation: function (event) {
     event.preventDefault();
+    event.stopPropagation();
     var reallyDoIt = confirm('Are you sure?')
     if (reallyDoIt) {
       event.preventDefault();
@@ -40,12 +41,14 @@ App.Views.UserAnnotationShow = Backbone.View.extend({
   
   showAnnotation: function (event) {
     event.preventDefault();
+    event.stopPropagation();
     this.$('.annotation-form-container').hide();
     this.$('.annotation-display').show();
   },
   
   showAnnotationForm: function (event) {
     event.preventDefault();
+    event.stopPropagation();
     this.$('.annotation-form-container').show();
     this.$('.annotation-display').hide();
   },

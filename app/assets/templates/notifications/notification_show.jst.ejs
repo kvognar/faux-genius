@@ -1,4 +1,4 @@
-<a href="/#/articles/<%= notification.get('article').id %>">
+<a href="/#/articles/<%= notification.get('article').id %>" class="notification-pane">
   <div class="row">
     <div class="col-md-1">
       <img src="<%= _.escape(author.image_url) %>">
@@ -14,3 +14,4 @@
     </div>
   </div>
 </a>
+<div class="source-container"></div>
