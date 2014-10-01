@@ -9,6 +9,7 @@ App.Views.UserAnnotationShow = Backbone.View.extend({
     'click .edit-annotation-link': 'showAnnotationForm',
     'click .delete-annotation-link': 'deleteAnnotation',
     'click .annotation-cancel': 'showAnnotation',
+    'click .add-image-link': 'addImage',
     'submit .annotation-form': 'updateAnnotation'
   },
   
@@ -16,6 +17,17 @@ App.Views.UserAnnotationShow = Backbone.View.extend({
     this.author = options.author
     this.listenTo(this.model, 'sync', this.render);
   },
+  
+  addImage: function (event) {
+    event.preventDefault();
+    event.stopPropagation();
+    var that = this;
+    filepicker.pick(function (blob) {
+      var imageMarkup = "![](" + blob.url + ")";
+      that.$('textarea').val(that.$('textarea').val() + imageMarkup);
+    });
+  },
+  
   
   deleteAnnotation: function (event) {
     event.preventDefault();
