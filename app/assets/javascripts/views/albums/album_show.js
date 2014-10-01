@@ -2,8 +2,24 @@ App.Views.AlbumShow = Backbone.View.extend({
   template: JST['albums/show'],
   id: 'album-show',
   
+  events: {
+    'click .filepicker-button': 'promptFilepicker'
+  },
+  
   initialize: function () {
     this.listenTo(this.model, 'sync', this.render);
+  },
+  
+  promptFilepicker: function (event) {
+    event.preventDefault();
+    var that = this;
+    filepicker.pick(function (blob) {
+      that.model.save({ 'image_url': blob.url }, {
+        success: function () {
+          that.render();
+        }
+      }); 
+    });
   },
   
   render: function () {

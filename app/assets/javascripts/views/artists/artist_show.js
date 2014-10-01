@@ -37,7 +37,7 @@ App.Views.ArtistShow = Backbone.CompositeView.extend({
   promptFilepicker: function () {
     var that = this;
     filepicker.pick(function (blob) {
-      that.model.save({'image_url': blob.url}, {
+      that.model.save({ 'image_url': blob.url }, {
         success: function () {
           that.render();
         }
