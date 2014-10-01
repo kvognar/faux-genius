@@ -8,7 +8,7 @@
         <img class="user-portrait" src="<%= user.escape('image_url') %>">
       <% } %>
       
-      <% if (user.id === App.user.id) { %>
+      <% if ( App.user && user.id === App.user.id) { %>
         <button class="btn btn-default filepicker-button">
           Choose a photo
         </button>

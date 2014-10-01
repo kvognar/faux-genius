@@ -116,10 +116,8 @@ App.Views.ArticleShow = Backbone.CompositeView.extend({
     var selection = this.getSelection();
     if (this.isValidSelection(selection)) {
       this.showPopover(selection);
-      // this._debugPrint(selection);
     } else {
       // TODO: needs to be hidden if ever unselected
-      // debugger
       if ($('.popover').length !== 0) {
         this.hidePopover();
       }
@@ -167,13 +165,13 @@ App.Views.ArticleShow = Backbone.CompositeView.extend({
     this.annotationView.show();
   },
   
-  showAnnotationForm: function (event) {
-    if (!App.user) {
-      $('#prompt-login-modal').modal('show');
-      return;
-    }
+  showAnnotationForm: function (event) {    
     event.preventDefault();
     this.hidePopover();
+    if (App.requireUser()) {
+      return;
+    }
+    
     var selection = this.getSelection(); // maybe save selection as ivar
     var newAnnotation = new App.Models.Annotation({
       article_id: this.model.id,

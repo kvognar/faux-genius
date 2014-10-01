@@ -501,3 +501,19 @@ ul.notification-list {
     }
   }
 }
+
+.modal-content {
+  background: #292929;
+  color: white;
+  
+  .modal-header {
+    border-bottom: none;
+    color: $genius-lightgray;
+  }
+}
+
+.btn-default {
+  background: #444;
+  color: #fff;
+  transition: background .2s, color .2s;
+}

@@ -1,24 +1,40 @@
 <% action = kind == "Sign Up" ? users_url : session_url %>
 <% label_id = kind == "Sign Up" ? "new-user" : "user" %>
 
-<form action="<%= action %>" method="post">
+<form action="<%= action %>" method="post" class="user-form">
   <input 
     type="hidden" 
     name="authenticity_token" 
     value="<%= form_authenticity_token %>">
     
-  <label for="<%= label_id %>-username">
-    Username
-  </label>
-  <input type="text"
-         name="user[username]"
-         id="<%= label_id %>-username">
-  <label for="<%= label_id %>-password">
-    Password
-  </label>
-  <input type="password"
-         name="user[password]"
-         id="<%= label_id %>-password">
-  <input type="submit" value="<%= kind %>">
+    <div class="form-group"}>
+      <label for="<%= label_id %>-username">
+        Username
+      </label>
+      <input type="text"
+             name="user[username]"
+             id="<%= label_id %>-username"
+             class="form-control">
+    </div>
+    <div class="form-group">
+      <label for="<%= label_id %>-password">
+        Password
+      </label>
+
+      <input type="password"
+             name="user[password]"
+             id="<%= label_id %>-password"
+             class="form-control">
+   </div class="form-group">
+  <input type="submit" value="<%= kind %>" class="btn btn-default">
   
 </form>
+
+<script type="text/javascript">
+  $(function () {
+    $('.user-form').on('submit', function (event) {
+      var pagePosition = $('<input type="hidden" name="referrer" value="' + document.location.toString() + '">');
+      $(event.currentTarget).append(pagePosition);
+    });
+  });
+</script>

@@ -17,3 +17,11 @@
   }
 };
 
+App.requireUser = function () {
+  if (!App.user) {
+    $('#prompt-login-modal').modal('show');
+    return true;
+  } else { 
+    return false;
+  }
+};

@@ -11,6 +11,9 @@ App.Views.RelationshipButton = Backbone.View.extend({
   },
   
   follow: function () {
+    if (App.requireUser()) {
+      return;
+    }
     this.collection.create({
       followed_id: this.collection.followed.id,
       followed_type: this.collection.followedType
@@ -47,7 +50,7 @@ App.Views.RelationshipButton = Backbone.View.extend({
   currentFollowing: function () {
     if (!this._currentFollowing) {
       this._currentFollowing = this.collection.find(function (model) {
-        return model.get('follower_id') === App.user.id;
+        return App.user && model.get('follower_id') === App.user.id;
       });
     }
     return this._currentFollowing;

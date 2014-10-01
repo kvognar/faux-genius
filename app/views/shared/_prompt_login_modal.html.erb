@@ -3,17 +3,44 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-        <h4 class="modal-title">Modal title</h4>
       </div>
+      
       <div class="modal-body">
-        <p>Sign up or log in to get started!&hellip;</p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" 
-                class="btn btn-default" >Sign Up</button>
-        <button type="button" 
-                class="btn btn-primary">Log In</button>
+        <p>Sign up or log in to get started!</p>
+        <div class="btn-group" data-toggle="buttons">
+          <label class="btn btn-default">
+            <input type="radio" name="sign-up" id="sign-up-prompt">Sign Up
+          </label>
+          <label class="btn btn-default">
+            <input type="radio" name="log-in" id="log-in-prompt">Log In
+          </label>
+        </div>
+        
+        <div class="sign-up-form" style="display: none">
+          <%= render partial: 'users/form', locals: { kind: "Sign Up" } %>
+        </div>
+        <div class="log-in-form", style="display: none">
+          <%= render partial: 'users/form', locals: { kind: "Log In" } %>
+        </div>
+        
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
+
+<script type="text/javascript">
+  $(function () {
+    // console.log($('#sign-up-prompt'));
+    $('#sign-up-prompt').on('change', function (event) {
+      console.log("click??");
+      $('.sign-up-form').show();
+      $('.log-in-form').hide();
+    });
+    $('#log-in-prompt').on('change', function (event) {
+      console.log("click??");
+      $('.sign-up-form').hide();
+      $('.log-in-form').show();
+    });
+    
+  });
+</script>

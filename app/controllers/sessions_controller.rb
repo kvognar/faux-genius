@@ -4,11 +4,10 @@ class SessionsController < ApplicationController
     @user = User.find_by_credentials(session_params)
     if @user
       sign_in!(@user)
-      redirect_to :back
     else
       flash[:errors] = ["I don't remember you :("]
-      redirect_to :back
     end
+    redirect_to params[:referrer]
   end
   
   def destroy
