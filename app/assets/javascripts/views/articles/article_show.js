@@ -126,9 +126,10 @@ App.Views.ArticleShow = Backbone.CompositeView.extend({
     }
   },
   
-  refreshText: function () {
+  refreshText: function (event) {
     this.articleText.render();
     this.delegateEvents();
+    $('a[href="' + event.annotation.id + '"]').click();
   },
   
   render: function () {
@@ -151,7 +152,8 @@ App.Views.ArticleShow = Backbone.CompositeView.extend({
   
   showAnnotation: function (event) {
     event.preventDefault();
-    // debugger
+    $('a').removeClass('active');
+    $(event.currentTarget).addClass('active');
     $('.annotation-container').css('top', $(event.currentTarget).offset().top);
     var annotation = this.model.annotations()
                                .get($(event.currentTarget).attr('href'));

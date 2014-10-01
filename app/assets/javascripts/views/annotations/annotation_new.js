@@ -36,7 +36,9 @@ App.Views.AnnotationNew = Backbone.CompositeView.extend({
     form.collection.create(this.model, {
       success: function (resp) {
         form.reset();
-        form.collection.trigger('created');
+        form.collection.trigger('created', {
+          annotation: form.model
+        });
       },
       error: function (resp) {
         console.log(resp);

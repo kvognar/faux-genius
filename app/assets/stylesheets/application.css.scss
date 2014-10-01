@@ -136,10 +136,11 @@ a:hover {
       text-decoration: none;
     }
   
-    a:hover {
+    a:hover, a.active {
       background-color: $genius-gold;
       color: black;
     };
+    
   }
   
 }
@@ -242,12 +243,6 @@ a:hover {
     color: white;
     border-bottom: thin solid $genius-darkgray;
   }
-  
-//  .search-result {
-//
-//
-//    }
-  
 }
 
 #artist-show {
