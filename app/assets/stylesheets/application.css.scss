@@ -150,6 +150,9 @@ a:hover {
   border-left: thin solid $genius-gold;
   
   .annotation-contents {
+    img {
+      max-width: 100%;
+    }
   }
 }
 
@@ -340,37 +343,37 @@ a:hover {
       list-style-type: none;
       padding-left: 0;
       
-      li.user-annotation {
-        border-bottom: thin solid $genius-gray;
+//      li.user-annotation {
+//        border-bottom: thin solid $genius-gray;
+//
+//        .annotation-header {
+//          background: #222;
+//          padding: 10px 20px;
+//
+//          .annotation-slug {
+//            color: $genius-gold;
+//            :hover {
+//              color: $genius-lightgold;
+//            };
+//          }
+//
+//
+//          a {
+//             color: #5ba7c2;
+//          }
+//          a:hover {
+//             color: #1992d5;
+//           }
+//
+//        }
+//
+//        .annotation-body {
+//          background: rgb(20, 20, 20);
+//          padding: 20px;
+//        }
         
-        .annotation-header {
-          background: #222;
-          padding: 10px 20px;
-          
-          .annotation-slug {
-            color: $genius-gold;
-            :hover {
-              color: $genius-lightgold;
-            };
-          }
-          
-          
-          a {
-             color: #5ba7c2;            
-          }
-          a:hover {
-             color: #1992d5;
-           }
-
-        }
         
-        .annotation-body {
-          background: rgb(20, 20, 20);
-          padding: 20px;
-        }
-        
-        
-      }
+//      }
     }
     
     .user-suggestions {
@@ -452,8 +455,49 @@ ul.notification-list {
     border-bottom: none;
   };
   
-  img {
+  img.user-icon {
     width: 30px;
   }
   
+}
+
+.annotation-partial {
+  border-bottom: thin solid $genius-gray;
+  
+  .annotation-header {
+    background: #222;
+    padding: 10px 20px;
+    
+    .annotation-slug {
+      color: $genius-gold;
+      :hover {
+        color: $genius-lightgold;
+      };
+    }
+    
+    
+    a {
+       color: #5ba7c2;            
+    }
+    a:hover {
+       color: #1992d5;
+     }
+
+  }
+  
+  .annotation-body {
+    background: rgb(20, 20, 20);
+    padding: 20px;
+    
+    img {
+      max-width: 100%;
+    }
+  }
+  
+  .annotation-controls {
+    background: $genius-bg;
+    a {
+//      color: ;
+    }
+  }
 }
