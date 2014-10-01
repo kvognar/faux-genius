@@ -25,7 +25,10 @@ class Annotation < ActiveRecord::Base
   belongs_to :article
   belongs_to :author, class_name: "User"
   has_many :suggestions, as: :suggestable, dependent: :destroy
-  has_many :sourced_notifications, class_name: "Notification", as: :source
+  has_many :sourced_notifications, 
+           class_name: "Notification", 
+           as: :source,
+           dependent: :destroy
   
   after_create :bubble_notifications
   
