@@ -6,4 +6,4 @@ json.extract! @annotation,
               :body,
               :id
 json.author @annotation.author, :username, :id
-json.article @annotation.article, :title, :artist_name
+json.article @annotation.article, :title, :artist_name, :id
