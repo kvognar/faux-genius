@@ -439,3 +439,26 @@ a:hover {
 .btn_unfollow:hover {
   content: "Unfollow!";
 };
+
+.notification-container {
+  
+}
+
+ul.notification-list {
+  li {
+    border-bottom: thin solid $genius-gray;
+    time {
+      display: block;
+      color: $genius-gray;
+    }
+    
+  }
+  li:last-child {
+    border-bottom: none;
+  };
+  
+  img {
+    width: 30px;
+  }
+  
+}

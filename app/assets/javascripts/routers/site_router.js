@@ -15,9 +15,9 @@ App.Routers.SiteRouter = Backbone.Router.extend({
     this.navbarView = new App.Views.NavbarView();
     $('.searchbar-container').html(this.navbarView.render().$el);
     if (App.user) {
-      this.notificationsView = new App.Views.NotificationsView();
+      this.notificationsList = new App.Views.NotificationsList();
       // debugger
-      $('ul.navbar-right').prepend(this.notificationsView.render().$el);
+      $('ul.navbar-right').prepend(this.notificationsList.render().$el);
     }
   },
   

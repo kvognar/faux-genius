@@ -1,0 +1,16 @@
+<a href="/#/articles/<%= notification.get('article').id %>">
+  <div class="row">
+    <div class="col-md-1">
+      <img src="<%= _.escape(author.image_url) %>">
+    </div>
+    <div class="col-md-11">
+      <%= _.escape(author.username) %> created an annotation on
+      <span class="article-title">
+        <%= _.escape(notification.get('article').title) %>
+      </span>
+      <time class="timeago notification-timestamp">
+        <%= $.timeago(new Date(notification.escape('created_at'))) %>
+      </time>
+    </div>
+  </div>
+</a>
