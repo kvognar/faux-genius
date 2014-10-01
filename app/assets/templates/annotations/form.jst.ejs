@@ -2,7 +2,8 @@
   <div class="form-group">
     <textarea name="annotation[body]" 
               class="annotation-form-body form-control"
-              placeholder="Write an Annotation"></textarea>
+              placeholder="Write an Annotation"><%= annotation.escape('body') %></textarea>
   </div>
   <input type="submit" value="Submit" class="btn btn-default">
+  <a href="#" class="annotation-cancel">cancel</a>
 </end>

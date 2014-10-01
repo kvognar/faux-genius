@@ -9,8 +9,26 @@ class Api::AnnotationsController < ApplicationController
     end
   end
   
+  def update
+    @annotation = Annotation.find(params[:id])
+    if @annotation.update(annotation_update_params)
+      render json: @annotation
+    else
+      render json: @annotation.errors, status: :unprocessable_entity
+    end
+  end
+  
+  def destroy
+    @annotation = Annotation.find(params[:id])
+    @annotation.destroy
+    render json: @annotation
+  end
   
   private
+  
+  def annotation_update_params
+    params.require('annotation').permit(:body)
+  end
   
   def annotation_params
     params.require('annotation').permit(:article_id, 
