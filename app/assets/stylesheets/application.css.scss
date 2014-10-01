@@ -224,6 +224,10 @@ a:hover {
 }
 
 #new-article-form {
+  color: white;
+  input[type=text] {
+    color: black;
+  }
   textarea {
     width: 90%;
     background-color: white;

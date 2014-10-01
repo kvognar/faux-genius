@@ -16,16 +16,26 @@ class Api::ArticlesController < ApplicationController
   end
   
   def create
-    artist = Artist.find_by_name(artist_params[:name])
-    artist ||= Artist.create(artist_params)
+    Article.transaction do
+      artist = Artist.find_by_name(artist_params[:name])
+      artist ||= Artist.create(artist_params)
     
-    @article = Article.new(article_params)
-    @article.artist = artist
+      if album_params[:title]
+        @album = Album.find_by(title: album_params[:title], artist_id: artist.id)
+        @album || Album.create(title: album_params[:title], artist: artist)
+      end
     
-    if @article.save
-      render json: @article
-    else
-      render json: @article.errors.full_messages, status: :unprocessable_entity
+      @article = Article.new(article_params)
+      @article.artist = artist
+      @article.submitter = current_user
+      @article.album = @album if @album
+    
+      if @article.save
+        @album.articles << @article if @album 
+        render json: @article
+      else
+        render json: @article.errors.full_messages, status: :unprocessable_entity
+      end
     end
   end
   
@@ -35,6 +45,10 @@ class Api::ArticlesController < ApplicationController
   end
   
   private
+  
+  def album_params
+    params.require(:album).permit(:title)
+  end
     
   def article_params
     params.require(:article).permit(:title, :body)

@@ -4,6 +4,7 @@ App.Views.AnnotationNew = Backbone.CompositeView.extend({
   events: {
     'submit .annotation-form': 'submit',
     'click .add-image-link': 'addImage',
+    'click .annotation-cancel': 'cancelForm'
   },
   
   initialize: function () { this.collection.trigger('create'); },
@@ -16,6 +17,11 @@ App.Views.AnnotationNew = Backbone.CompositeView.extend({
       var imageMarkup = "![](" + blob.url + ")";
       that.$('textarea').val(that.$('textarea').val() + imageMarkup);
     });
+  },
+  
+  cancelForm: function (event) {
+    event.preventDefault();
+    this.hide();
   },
   
   hide: function () {

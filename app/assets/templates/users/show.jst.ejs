@@ -47,7 +47,7 @@
       <div class="tab-pane" id="pages">
         <ul class="user-articles">
           <% user.articles().each(function (article) { %>
-            <a href="/#/articles/article.id">
+            <a href="/#/articles/<%= article.id %>">
               <li><%= article.escape('title') %></li>
             </a>
           <% }); %>

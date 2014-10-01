@@ -150,6 +150,13 @@ App.Views.ArticleShow = Backbone.CompositeView.extend({
   
   showAnnotation: function (event) {
     event.preventDefault();
+    
+    if ($(event.currentTarget).hasClass('active')) {
+      $('a').removeClass('active');
+      this.annotationView.hide();
+      return;
+    }
+    
     $('a').removeClass('active');
     $(event.currentTarget).addClass('active');
     $('.annotation-container').css('top', $(event.currentTarget).offset().top);
