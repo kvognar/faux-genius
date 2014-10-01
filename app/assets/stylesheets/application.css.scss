@@ -94,6 +94,21 @@ a:hover {
       top: -50%;
     }
     
+    .article-subdetails {
+      position: absolute;
+      right: 10px;
+      top: 20px;
+      color: $genius-lightgray;
+      a {
+        padding: 2px;
+        background: rgba(10, 10, 10, 0.7);;
+        color: white;
+      }
+      a:hover {
+        background: rgba(10, 10, 10, 0.9);
+      };
+    }
+    
     .article-details {
       position: absolute;
       bottom: 0;

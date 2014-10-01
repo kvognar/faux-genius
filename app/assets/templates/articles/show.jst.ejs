@@ -1,6 +1,16 @@
 <div class="article-container">
   <div class="article-header">
     <img src="<%= article.escape('image_url') %>">
+    
+    <div class="article-subdetails">
+      <% if (article.album) { %>
+        <span class="glyphicon glyphicon-record"></span>
+        <a href="/#/albums/<%= article.album.id %>">
+          <%= article.album.escape('title') %>
+        </a>
+      <% } %>
+    </div>
+    
     <div class="article-details">
       <h2 class="article-title"><span><%= article.escape('title') %></span></h2>
       <% if (article.artist) { %>
@@ -11,6 +21,7 @@
       <% } %>
     </div>
   </div>
+  
   <div class="row">
     <div class="col-md-7">
       <div class="follow-button-container"></div>
