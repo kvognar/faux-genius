@@ -21,10 +21,7 @@ class Suggestion < ActiveRecord::Base
     foreign_key: :author_id,
     primary_key: :id
   )
-
   
-  # def post_date
-  #   time_ago_in_words(self.created_at)
-  # end
+  has_many :sourced_notifications, as: :source
   
 end

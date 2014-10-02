@@ -8,7 +8,7 @@
     <li>
       <a href="/#/articles/<%= article.id %>">
         <div class="article-block">
-          <img src="<%= article.escape('image_url') %>">
+          <img src="<%= article.escape('image_url') %>" class="overlay">
           <div class="article-block-details">
             <h3 class="article-title"><%= article.escape('title') %></h3>
             <h4 class="article-artist"><%= article.escape('artist_name') %></h4>
