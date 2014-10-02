@@ -5,6 +5,17 @@
     </a>
   </div>
   <p class="annotation-body"><%= marked(annotation.escape('body')) %></p>
+    <% if (App.user && annotation.author.id == App.user.id) { %>
+      <div class="annotation-controls">
+        <a href="#" class="edit-annotation-link">
+          edit
+        </a>
+        <span> | </span>
+        <a href="#" class="delete-annotation-link">
+          delete
+        </a>
+      </div>
+    <% } %>
 
   <div class="suggestions-container"></div>
 </div>

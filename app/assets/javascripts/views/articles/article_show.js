@@ -4,7 +4,8 @@ App.Views.ArticleShow = Backbone.CompositeView.extend({
   
   initialize: function () {
     this.listenTo(this.model, 'sync', this.render);
-    this.listenTo(this.model.annotations(), 'created', this.refreshText);
+    this.listenTo(this.model.annotations(), 'created', this.showNewAnnotation);
+    this.listenTo(this.model.annotations(), 'destroyed', this.refreshText);
     this.initializeSubviews();
   },
   
@@ -35,18 +36,18 @@ App.Views.ArticleShow = Backbone.CompositeView.extend({
     
   },
   
-  createAnnotationForm: function (annotation) {
-    this.annotationForm = new App.Views.AnnotationNew({
-      model: annotation,
-      collection: this.model.annotations()
-    });
-    this.addSubview('.annotation-container', this.annotationForm);
-    this.annotationForm.hide();
-  },
+  // createAnnotationForm: function (annotation) {
+  //   this.annotationForm = new App.Views.AnnotationShow({
+  //     model: annotation,
+  //   });
+  //   this.addSubview('.annotation-container', this.annotationForm);
+  //   this.annotationForm.hide();
+  // },
   
   createAnnotationView: function (annotation) {
     this.annotationView = new App.Views.AnnotationShow({
-      model: annotation
+      model: annotation,
+      collection: this.model.annotations(),
     });
     this.addSubview('.annotation-container', this.annotationView);
     this.annotationView.hide();
@@ -127,10 +128,10 @@ App.Views.ArticleShow = Backbone.CompositeView.extend({
   refreshText: function (event) {
     this.articleText.render();
     this.delegateEvents();
-    $('a[href="' + event.annotation.id + '"]').click();
   },
   
   render: function () {
+    // console.log(this.model.escape('title'));
     var renderedContent = this.template({ 
       article: this.model,
     });
@@ -146,6 +147,11 @@ App.Views.ArticleShow = Backbone.CompositeView.extend({
       return selection.containsNode(this);
     });
     return result.length === 0;
+  },
+  
+  showNewAnnotation: function (event) {
+    this.refreshText();
+    $('a[href="' + event.annotation.id + '"]').click();
   },
   
   toggleAnnotation: function (event) {
@@ -167,7 +173,6 @@ App.Views.ArticleShow = Backbone.CompositeView.extend({
     } else {
       this.annotationView.switchAnnotation(annotation);
     }
-    if (this.annotationForm) { this.annotationForm.hide() }
     this.annotationView.show();
     this.changeAnnotationPosition(event);
   },
@@ -201,13 +206,12 @@ App.Views.ArticleShow = Backbone.CompositeView.extend({
       start_index: selection.start,
       end_index: selection.end
     });
-    if (!this.annotationForm) {
-      this.createAnnotationForm(newAnnotation);
+    if (!this.annotationView) {
+      this.createAnnotationView(newAnnotation);
     } else {
-      this.annotationForm.switchAnnotation(newAnnotation);
+      this.annotationView.switchAnnotation(newAnnotation);
     }
-    if (this.annotationView) { this.annotationView.hide() }
-    this.annotationForm.show();
+    this.annotationView.show();
     this.changeAnnotationPosition(event);
   },
   
