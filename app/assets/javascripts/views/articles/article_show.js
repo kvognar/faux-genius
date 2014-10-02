@@ -176,10 +176,11 @@ App.Views.ArticleShow = Backbone.CompositeView.extend({
     var $text = $('.article-text');
     var minTop = $text.offset().top;
     var $annotationContainer = $('.annotation-container');
+    var annotationTop = $(event.currentTarget).offset().top - $annotationContainer.height() / 2;
     
     var bottom = ($annotationContainer.height() > window.innerHeight)
                ? bottom = window.scrollY
-               : $(event.currentTarget).offset().top - $annotationContainer.height() / 2;
+               : Math.max(window.scrollY, annotationTop);
       
     $annotationContainer.offset({ 
       top: Math.max(minTop, bottom)
