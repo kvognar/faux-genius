@@ -19,7 +19,7 @@ class Annotation < ActiveRecord::Base
             
   validate :no_overlap_with_neighbor_annotations
   
-  default_scope { order('created_at DESC') }
+  default_scope { order('id DESC') }
   
   belongs_to :article
   belongs_to :author, class_name: "User"
