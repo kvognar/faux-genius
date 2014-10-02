@@ -10,8 +10,6 @@ App.Views.AnnotationShow = Backbone.CompositeView.extend({
   
   hide: function () {
     this.$el.hide();
-    
-    
   },
   
   render: function () {
@@ -24,12 +22,12 @@ App.Views.AnnotationShow = Backbone.CompositeView.extend({
   
   show: function () {
     this.$el.show();
-    $('.annotation-container').css('right', '10px');
+    $('.annotation-container').css('right', '12px');
     $('.annotation-container').css('opacity', '0');
     $('.annotation-container').animate({
       opacity: 1,
       right: 0
-    }, 100);
+    }, 150);
     
   },
   

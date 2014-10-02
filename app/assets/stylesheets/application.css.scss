@@ -57,18 +57,9 @@ a:hover {
 .annotation-container {
   width: 40%;
   position: absolute;
-  right: 0;
-//  transition: opacity 0.2s, right 0.2s;
-//  transition-timing-function: ease-in;
-  
+  right: 0;  
 }
 
-.annotation-container.transitioning {
-//  opacity: 0;
-//  right: 30px;
-//  transition: opacity 0.3s, right 0.3s, ease-out;
-//  border: thin solid white;
-}
 
 
 .popover {
