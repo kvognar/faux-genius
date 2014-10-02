@@ -17,8 +17,7 @@ class Annotation < ActiveRecord::Base
   validates :start_index, :end_index, :body, 
             :article, :slug, :author, presence: true
             
-  # TODO !
-  # validate :no_overlap_with_neighbor_annotations
+  validate :no_overlap_with_neighbor_annotations
   
   default_scope { order('created_at DESC') }
   
@@ -41,7 +40,20 @@ class Annotation < ActiveRecord::Base
   
   private
   
-  # def no_overlap_with_neighbor_annotations
-  #
-  # end
+  def no_overlap_with_neighbor_annotations
+    where_query = <<-SQL
+    (id != :self_id OR id IS NOT NULL)
+    AND
+    (
+      start_index BETWEEN :start_index AND :end_index
+      OR end_index BETWEEN :start_index AND :end_index
+    )
+    SQL
+    siblings = Annotation.where(where_query, self_id: self.id, 
+                      start_index: self.start_index, end_index: self.end_index)
+    unless siblings.empty?
+      errors[:annotation] << "cannot overlap with other annotations"
+    end
+    siblings
+  end
 end

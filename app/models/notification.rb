@@ -18,7 +18,7 @@ class Notification < ActiveRecord::Base
   belongs_to :user
   belongs_to :notable, polymorphic: true
   belongs_to :source, polymorphic: true
-  
+    
   def title
     return notable.title if notable_type == "Article"
     return notable.name if notable_type == "Artist"
