@@ -55,17 +55,7 @@ class User < ActiveRecord::Base
             source_type: "Artist"
             
   has_many :incoming_notifications, class_name: "Notification"
-            
-  def bubble_notifications(source)
-    transaction do
-      self.followers.each do |follower|
-        notification = follower.incoming_notifications.new(notable: self)
-        notification.source = source
-        notification.save!
-      end
-    end
-  end
-            
+
   def followed_items
     followed_items = {}
     followed_items[:users] = relationships.pluck(:followed_id, :followed_type)

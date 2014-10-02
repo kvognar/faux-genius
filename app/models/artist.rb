@@ -18,16 +18,4 @@ class Artist < ActiveRecord::Base
   has_many :followings, class_name: "Relationship", as: :followed
   has_many :followers, through: :followings
   
-  has_many :outgoing_notifications, as: :notable
-  
-  def bubble_notifications(source)
-    transaction do
-      self.followers.each do |follower|
-        notification = follower.incoming_notifications.new(notable: self)
-        notification.source = source
-        notification.save!
-      end
-    end
-  end
-  
 end

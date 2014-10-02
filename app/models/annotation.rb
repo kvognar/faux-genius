@@ -30,12 +30,17 @@ class Annotation < ActiveRecord::Base
            dependent: :destroy
   
   after_create :bubble_notifications
+    
+  def followers
+    self.author.followers + 
+    self.article.followers + 
+    self.article.artist.followers
+  end
   
   def bubble_notifications
-    p "OoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOo"
-    #bubbles!
-    self.article.bubble_notifications(self)
-    self.author.bubble_notifications(self)
+    self.followers.uniq.each do |follower|
+      follower.incoming_notifications.create!(source: self)
+    end
   end
   
   private
@@ -44,14 +49,19 @@ class Annotation < ActiveRecord::Base
     where_query = <<-SQL
     (id != :self_id OR id IS NOT NULL)
     AND
+    article_id = :self_article_id
+    AND
     (
       start_index BETWEEN :start_index AND :end_index
       OR end_index BETWEEN :start_index AND :end_index
     )
     SQL
-    siblings = Annotation.where(where_query, self_id: self.id, 
-                      start_index: self.start_index, end_index: self.end_index)
-    unless siblings.empty?
+    siblings = Annotation.where(where_query, 
+                      self_id: self.id, 
+                      start_index: self.start_index, 
+                      end_index: self.end_index,
+                      self_article_id: self.article_id)
+    unless (siblings - [self]).empty?
       errors[:annotation] << "cannot overlap with other annotations"
     end
     siblings

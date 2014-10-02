@@ -5,6 +5,7 @@ class Api::AnnotationsController < ApplicationController
     if @annotation.save
       render :show
     else
+      fail
       render json: @annotation.errors.full_messages, status: :unprocessable_entity
     end
   end

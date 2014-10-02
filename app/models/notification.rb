@@ -13,15 +13,9 @@
 #
 
 class Notification < ActiveRecord::Base
-  validates :user, :notable, presence: true
+  validates :user, :source, presence: true
   
   belongs_to :user
-  belongs_to :notable, polymorphic: true
   belongs_to :source, polymorphic: true
     
-  def title
-    return notable.title if notable_type == "Article"
-    return notable.name if notable_type == "Artist"
-    return notable.username if notable_type =="User"
-  end
 end

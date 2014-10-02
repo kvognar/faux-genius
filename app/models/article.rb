@@ -57,16 +57,6 @@ class Article < ActiveRecord::Base
     end
   end
   
-  def bubble_notifications(source = self)
-    transaction do
-      self.followers.each do |follower|
-        notification = follower.incoming_notifications.new(notable: self)
-        notification.source = source
-        notification.save!
-      end
-      self.artist.bubble_notifications(source)
-    end
-  end
   
   private
   
