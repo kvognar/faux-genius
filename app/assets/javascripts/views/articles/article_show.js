@@ -11,7 +11,7 @@ App.Views.ArticleShow = Backbone.CompositeView.extend({
   events: {
     'mouseup #article-body': 'promptAnnotate',
     'click .annotation-prompt a': 'showAnnotationForm',
-    'click #article-body a': 'showAnnotation',
+    'click #article-body a': 'toggleAnnotation',
   },
   
   initializeSubviews: function () {
@@ -148,7 +148,7 @@ App.Views.ArticleShow = Backbone.CompositeView.extend({
     return result.length === 0;
   },
   
-  showAnnotation: function (event) {
+  toggleAnnotation: function (event) {
     event.preventDefault();
     
     if ($(event.currentTarget).hasClass('active')) {
@@ -159,7 +159,6 @@ App.Views.ArticleShow = Backbone.CompositeView.extend({
     
     $('a').removeClass('active');
     $(event.currentTarget).addClass('active');
-    $('.annotation-container').css('top', $(event.currentTarget).offset().top);
     var annotation = this.model.annotations()
                                .get($(event.currentTarget).attr('href'));
                                
@@ -170,6 +169,21 @@ App.Views.ArticleShow = Backbone.CompositeView.extend({
     }
     if (this.annotationForm) { this.annotationForm.hide() }
     this.annotationView.show();
+    this.changeAnnotationPosition(event);
+  },
+  
+  changeAnnotationPosition: function (event) {
+    var $text = $('.article-text');
+    var minTop = $text.offset().top;
+    var $annotationContainer = $('.annotation-container');
+    
+    var bottom = ($annotationContainer.height() > window.innerHeight)
+               ? bottom = window.scrollY
+               : $(event.currentTarget).offset().top - $annotationContainer.height() / 2;
+      
+    $annotationContainer.offset({ 
+      top: Math.max(minTop, bottom)
+    });
   },
   
   showAnnotationForm: function (event) {    
@@ -193,6 +207,7 @@ App.Views.ArticleShow = Backbone.CompositeView.extend({
     }
     if (this.annotationView) { this.annotationView.hide() }
     this.annotationForm.show();
+    this.changeAnnotationPosition(event);
   },
   
   showPopover: function (selection) {
