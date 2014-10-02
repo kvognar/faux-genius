@@ -395,37 +395,6 @@ a:hover {
       list-style-type: none;
       padding-left: 0;
       
-//      li.user-annotation {
-//        border-bottom: thin solid $genius-gray;
-//
-//        .annotation-header {
-//          background: #222;
-//          padding: 10px 20px;
-//
-//          .annotation-slug {
-//            color: $genius-gold;
-//            :hover {
-//              color: $genius-lightgold;
-//            };
-//          }
-//
-//
-//          a {
-//             color: #5ba7c2;
-//          }
-//          a:hover {
-//             color: #1992d5;
-//           }
-//
-//        }
-//
-//        .annotation-body {
-//          background: rgb(20, 20, 20);
-//          padding: 20px;
-//        }
-        
-        
-//      }
     }
     
     .user-suggestions {
@@ -569,4 +538,10 @@ ul.notification-list {
   background: #444;
   color: #fff;
   transition: background .2s, color .2s;
+}
+
+.annotation-form {
+  textarea {
+    rows: 8;
+  }
 }
