@@ -6,6 +6,7 @@ App.Views.AnnotationShow = Backbone.CompositeView.extend({
       collection: this.model.suggestions(),
     });
     this.addSubview('.suggestions-container', this.suggestionsView);
+    this.$container = $('.annotation-container');
   },
   
   hide: function () {
@@ -22,9 +23,9 @@ App.Views.AnnotationShow = Backbone.CompositeView.extend({
   
   show: function () {
     this.$el.show();
-    $('.annotation-container').css('right', '12px');
-    $('.annotation-container').css('opacity', '0');
-    $('.annotation-container').animate({
+    this.$container.css('right', '12px');
+    this.$container.css('opacity', '0');
+    this.$container.animate({
       opacity: 1,
       right: 0
     }, 150);

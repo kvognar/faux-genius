@@ -50,6 +50,7 @@ App.Routers.SiteRouter = Backbone.Router.extend({
     var article = App.articles.getOrFetch(id);
     var showView = new App.Views.ArticleShow({ model: article });
     this._swapView(showView);
+    window.scrollTo(0, 0);
   },
   
   showAlbum: function (id) {
