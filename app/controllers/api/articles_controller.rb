@@ -22,7 +22,7 @@ class Api::ArticlesController < ApplicationController
     
       if album_params[:title]
         @album = Album.find_by(title: album_params[:title], artist_id: artist.id)
-        @album || Album.create(title: album_params[:title], artist: artist)
+        @album ||= Album.create(title: album_params[:title], artist: artist)
       end
     
       @article = Article.new(article_params)
