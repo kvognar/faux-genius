@@ -514,18 +514,17 @@ a:hover {
   content: "Unfollow!";
 };
 
-.notification-container {
-  
-}
-
 ul.notification-list {
   li {
     border-bottom: thin solid $genius-gray;
+    width: 100%;
     time {
       display: block;
       color: $genius-gray;
     }
-    
+    div.form-group {
+      margin-bottom: 0;
+    }
   }
   li:last-child {
     border-bottom: none;
@@ -619,4 +618,8 @@ textarea.form-control, input.form-control {
 
 input.form-control {
   
+}
+
+.suggestions-container {
+  background: #141414;
 }
