@@ -1,5 +1,6 @@
 App.Views.AnnotationShow = Backbone.CompositeView.extend({
   template: JST['annotations/show'],
+  className: 'annotation-partial',
   
   events: {
     'submit .annotation-form': 'submit',

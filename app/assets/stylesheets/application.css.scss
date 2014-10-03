@@ -391,11 +391,48 @@ a:hover {
   }
   
   .user-contributions {
+    
+    .nav-tabs > li.active > a {
+      background-color: rgb(49, 45, 50);
+      color: white;
+    }
+    
+    .nav-tabs > li > a {
+      background-color: rgb(75, 69, 77);
+      color: white;
+      border: none;
+    }
+    
+    .nav-tabs > li > a:hover {
+      background-color :#5ba7c2;
+      color: white;
+    }
+    
+   .nav-tabs > li.active > a:hover {
+     background-color: rgb(49, 45, 50);
+   }
+    
+    ul.nav {
+      border-bottom: 6px solid rgb(49, 45, 50);
+//      li.active {
+//        background: rgb(49, 45, 50);
+//      }
+//
+//      li {
+//        background: #4b454d;
+//        color: white;
+//      }
+//
+//      a {
+//        color: white;
+//      }
+    }
+    
     .user-annotations-list {
       list-style-type: none;
       padding-left: 0;
-      
     }
+    
     
     .user-suggestions {
       padding-left: 0px;
@@ -486,7 +523,7 @@ ul.notification-list {
 .annotation-partial {
   border-bottom: thin solid $genius-gray;
   
-  .annotation-header {
+  .annotation-standalone-header {
     background: #222;
     padding: 10px 20px;
     
@@ -496,8 +533,6 @@ ul.notification-list {
         color: $genius-lightgold;
       };
     }
-    
-    
     a {
        color: #5ba7c2;            
     }
@@ -507,9 +542,11 @@ ul.notification-list {
 
   }
   
+  
   .annotation-body {
     background: rgb(20, 20, 20);
     padding: 20px;
+    color: white;
     
     img {
       max-width: 100%;

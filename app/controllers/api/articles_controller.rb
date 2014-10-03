@@ -1,7 +1,7 @@
 class Api::ArticlesController < ApplicationController
   
   def index
-    @articles = Article.includes(:artist, :album).all
+    @articles = Article.includes(:artist, :album).all.limit(12).order(created_at: :desc)
     render :index
   end
   
