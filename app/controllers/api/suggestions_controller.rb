@@ -9,6 +9,12 @@ class Api::SuggestionsController < ApplicationController
     end
   end
   
+  def show
+    @suggestion = Suggestion.includes(:author, :suggestable)
+                            .find(params[:id])
+    render :show
+  end
+  
   def destroy
   end
   

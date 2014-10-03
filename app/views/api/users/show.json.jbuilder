@@ -13,7 +13,7 @@ json.suggestions @user.authored_suggestions do |suggestion|
       end
     elsif suggestion.suggestable.class == Article
       json.title suggestion.suggestable.title
-      json.artist_name suggestion. suggestable.artist_name
+      json.artist_name suggestion.suggestable.artist_name
       json.id suggestion.suggestable.id
     end
   end

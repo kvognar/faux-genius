@@ -30,6 +30,10 @@ class Annotation < ActiveRecord::Base
            dependent: :destroy
   
   after_create :bubble_notifications
+  delegate :title, to: :article, prefix: true
+  
+  belongs_to :parent, class_name: "Article", foreign_key: :article_id
+  has_many :children, as: :parent, class_name: "Suggestion"
     
   def followers
     self.author.followers + 
@@ -39,10 +43,13 @@ class Annotation < ActiveRecord::Base
   
   def bubble_notifications
     self.followers.uniq.each do |follower|
-      follower.incoming_notifications.create!(source: self)
+      unless follower.id == self.author_id
+        follower.incoming_notifications.create!(source: self)
+      end
     end
   end
   
+    
   private
   
   def no_overlap_with_neighbor_annotations

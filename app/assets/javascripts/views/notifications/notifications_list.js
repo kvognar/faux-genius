@@ -17,8 +17,7 @@ App.Views.NotificationsList = Backbone.CompositeView.extend({
     this.addSubview('.dropdown-menu', notificationView);
   },
   
-  render: function () {
-    // debugger
+  render: function () { 
     var renderedContent = this.template({ notifications: this.collection });
     this.$el.html(renderedContent);
     this.attachSubviews();

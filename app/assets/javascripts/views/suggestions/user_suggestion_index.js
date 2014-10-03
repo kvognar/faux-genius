@@ -6,7 +6,6 @@ App.Views.UserSuggestionsIndex = Backbone.View.extend({
   },
   
   render: function () {
-    // debugger
     var renderedContent = this.template({ 
       suggestions: this.collection
      });

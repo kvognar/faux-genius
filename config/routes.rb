@@ -9,7 +9,7 @@ Rails.application.routes.draw do
     resources :articles, only: [:index, :show, :create]
     resources :annotations, only: [:create, :show, :update, :destroy]
     resources :users, only: [:show, :update]
-    resources :suggestions, only: [:create, :destroy]
+    resources :suggestions, only: [:create, :destroy, :show]
     resources :artists, only: [:show, :update]
     resources :albums, only: [:show, :update]
     resources :relationships, only: [:create, :destroy]

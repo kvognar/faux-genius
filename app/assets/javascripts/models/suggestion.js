@@ -5,4 +5,5 @@ App.Models.Suggestion = Backbone.Model.extend({
     this.author = new App.Models.User(options.author);
     delete options.author;
   },
+  
 });
