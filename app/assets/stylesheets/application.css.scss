@@ -463,19 +463,6 @@ a:hover {
       list-style-type: none;
       background: rgb(30, 30, 30);
       
-      .suggestion-context {
-        margin: 20px 10px;
-        a {
-          color: $genius-gold;
-        }
-      
-        a:hover {
-          color: $genius-lightgold;
-          text-decoration: none;
-        }
-        
-        color: #999;
-      }
       
       
       li {
@@ -489,6 +476,10 @@ a:hover {
         }
       }
       
+    }
+    
+    .user-suggestions > div {
+      border-bottom: thin solid $genius-darkgray;
     }
     
     .user-articles {
@@ -535,13 +526,17 @@ a:hover {
 ul.notification-list {
   li {
     border-bottom: thin solid $genius-gray;
-    width: 100%;
+    width: 400px;
     time {
       display: block;
       color: $genius-gray;
     }
     div.form-group {
       margin-bottom: 0;
+    }
+    
+    span {
+      white-space: normal;
     }
   }
   li:last-child {
@@ -606,10 +601,6 @@ ul.notification-list {
   }
 }
 
-//.btn-default {
-//  transition: background .2s, color .2s;
-//}
-
 .annotation-form {
   textarea {
     rows: 8;
@@ -620,6 +611,7 @@ ul.notification-list {
  border: thin solid #777; 
  background: #444;
  color: #fff;
+ margin: 4px;
 }
 
 .btn-default:hover {
@@ -644,4 +636,39 @@ input.form-control {
 
 a.dropdown-toggle.notification-dropdown.active {
   color: $genius-gold;
+}
+
+.suggestion-container {
+  background: rgb(30, 30, 30);
+  padding: 10px 0;
+  .suggestion-context {
+    
+    margin: 0 10px;
+    
+    a {
+      color: $genius-gold;
+    }
+  
+    a:hover {
+      color: $genius-lightgold;
+      text-decoration: none;
+    }
+    
+    color: #999;
+  }
+  
+  
+  .suggestion-body {
+    color: $genius-lightgray;
+    margin: 10px 10px 0 10px;
+    
+    img {
+      padding: 20px;
+      max-width: 100%;
+    }
+    p {
+      margin-bottom: 0;
+    }
+  }
+  
 }

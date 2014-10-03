@@ -1,12 +1,14 @@
 App.Views.SearchView = Backbone.View.extend({
   
   template: JST['search/view'],
+  id: 'search-results',
+  
   
   initialize: function () {
     this.listenTo(this.model, 'sync', this.render);
+    $('#searchbar input').val('');
   },
   
-  id: 'search-results',
   
   render: function () {
     // debugger
