@@ -13,7 +13,11 @@ App.Views.AlbumShow = Backbone.View.extend({
   promptFilepicker: function (event) {
     event.preventDefault();
     var that = this;
-    filepicker.pick(function (blob) {
+    filepicker.pick({
+      mimetype: 'image/*',
+      service: 'COMPUTER'
+    },
+      function (blob) {
       that.model.save({ 'image_url': blob.url }, {
         success: function () {
           that.render();

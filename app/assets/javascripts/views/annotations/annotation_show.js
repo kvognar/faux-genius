@@ -23,7 +23,11 @@ App.Views.AnnotationShow = Backbone.CompositeView.extend({
     event.preventDefault();
     event.stopPropagation();
     var that = this;
-    filepicker.pick(function (blob) {
+    filepicker.pick({
+      mimetype: 'image/*',
+      service: 'COMPUTER'
+    },
+      function (blob) {
       var imageMarkup = "![](" + blob.url + ")";
       that.$('textarea').val(that.$('textarea').val() + imageMarkup);
     });
@@ -96,7 +100,6 @@ App.Views.AnnotationShow = Backbone.CompositeView.extend({
   },
   
   showAnnotationForm: function (event) {
-    // debugger
     event.preventDefault();
     event.stopPropagation();
     this.$('.annotation-body').hide();

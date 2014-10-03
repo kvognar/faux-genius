@@ -16,7 +16,7 @@ class User < ActiveRecord::Base
   validates :username, :session_token, uniqueness: true
   validates :password, length: { minimum: 6, allow_nil: true }
   
-  after_initialize :ensure_session_token
+  after_initialize :ensure_session_token, :ensure_image_url
   
   attr_reader :password
   
@@ -84,6 +84,10 @@ class User < ActiveRecord::Base
   end
   
   private
+  
+  def ensure_image_url
+    self.image_url ||= "assets/site/default_user_image.png"
+  end
   
   def generate_token
     SecureRandom::urlsafe_base64(16)

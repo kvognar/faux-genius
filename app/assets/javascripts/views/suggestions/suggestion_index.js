@@ -28,8 +28,10 @@ App.Views.SuggestionIndex = Backbone.View.extend({
     
     var $form = $(event.currentTarget);
     var formData = $form.serializeJSON();
-    this.collection.create(formData.suggestion, {
+    var newSuggestion = new App.Models.Suggestion(formData.suggestion);
+    this.collection.create(newSuggestion, {
       success: function (resp) {
+        newSuggestion.author = App.user;
         $form.find('textarea').val('');
         this.render();
       }.bind(this),

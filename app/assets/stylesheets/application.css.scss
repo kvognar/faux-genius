@@ -13,6 +13,8 @@
  *= require_tree .
  *= require_self
  */
+
+
 @import "bootstrap-sprockets";
 @import "bootstrap";
 @import url(http://fonts.googleapis.com/css?family=Abel);
@@ -30,6 +32,7 @@ $genius-lightgray: rgb(238, 238, 238);
 $genius-gray: rgb(204, 204, 204);
 $genius-mid-darkgray: rgb(102, 102, 102);
 $genius-darkgray: rgb(53, 53, 53);
+
 
 body {
   margin: 0 5%;
@@ -209,6 +212,7 @@ a:hover {
     height: 200px;
     position: relative;
     h1.site-logo {
+      font-size: 6em;
       margin: 0;
       line-height: 200px;
       text-align: center;
@@ -275,6 +279,7 @@ a:hover {
   color: white;
   input[type=text] {
     color: black;
+    background-color: white;
   }
   textarea {
     width: 90%;
@@ -387,6 +392,7 @@ a:hover {
       font-family: $genius-font, sans-serif;
       color: $genius-gold;
       border-bottom: 2px solid $genius-gold;
+      margin-top: 8px;
     }
   }
   
@@ -489,6 +495,18 @@ a:hover {
   
 }
 
+.btn.btn-default.btn-sm.btn-follow, .btn.btn-default.btn-sm.btn-unfollow {
+  background-color: #4f3a00;
+  border: 1px solid #826000;
+  color: $genius-gold;
+  padding: 2px 8px;
+  margin: 2px 0;
+}
+.btn.btn-default.btn-sm.btn-follow:hover, .btn.btn-default.btn-sm.btn-unfollow:hover {
+  background-color: #362700;
+};
+
+
 .btn-unfollow {
   content: "Following";
 }
@@ -571,14 +589,34 @@ ul.notification-list {
   }
 }
 
-.btn-default {
-  background: #444;
-  color: #fff;
-  transition: background .2s, color .2s;
-}
+//.btn-default {
+//  transition: background .2s, color .2s;
+//}
 
 .annotation-form {
   textarea {
     rows: 8;
   }
+}
+
+.btn-default {
+ border: thin solid #777; 
+ background: #444;
+ color: #fff;
+}
+
+.btn-default:hover {
+  border: thin solid #777; 
+  background: #555;
+  color: #fff;
+};
+
+textarea.form-control, input.form-control {
+  border: thin solid #555;
+  background: #333;
+  color: white;
+}
+
+input.form-control {
+  
 }
