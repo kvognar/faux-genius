@@ -45,7 +45,7 @@ a:hover {
 };
 
 
-.navbar {
+.navbar.navbar-inverse {
   
   .navbar-brand {
     font-family: $genius-font, sans-serif;
@@ -54,6 +54,19 @@ a:hover {
   .navbar-brand:hover {
     color: $genius-lightgold;
   };
+  
+  a.current-user-link {
+    padding: 10px 5px 0 5px;
+  }
+  
+  a:hover img.current-user-icon {
+    box-shadow: 0px 0px 10px $genius-gold;
+  }
+  
+  img.current-user-icon {
+    width: 30px;
+    transition: box-shadow 0.2s;
+  }
     
 }
 
@@ -194,6 +207,11 @@ a:hover {
   .suggestion-content {
     color: $genius-lightgray;
     border: thin solid $genius-mid-darkgray;
+    
+    .suggestion-text {
+      margin: 10px;
+    }
+    
     img {
       max-width: 100%;
     }
@@ -622,4 +640,8 @@ input.form-control {
 
 .suggestions-container {
   background: #141414;
+}
+
+a.dropdown-toggle.notification-dropdown.active {
+  color: $genius-gold;
 }

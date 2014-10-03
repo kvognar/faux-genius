@@ -22,6 +22,8 @@ class Suggestion < ActiveRecord::Base
     primary_key: :id
   )
   
+  default_scope { order('id DESC') }
+  
   has_many :sourced_notifications, as: :source
   belongs_to :parent, polymorphic: true, foreign_key: :suggestable_id, foreign_type: :suggestable_type
   

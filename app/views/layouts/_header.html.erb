@@ -15,7 +15,10 @@
         <a href="/#/articles/new">Create</a>
       </li>
       <li>
-        <%= link_to current_user.username, "/#/users/#{current_user.id}" %>
+        <a href="/#/users/<%= current_user.id %>" class="current-user-link">
+          <img src="<%= current_user.image_url %>" class="current-user-icon">
+        </a>
+        <%#= link_to current_user.username, "/#/users/#{current_user.id}" %>
       </li>
       <li>
         <%= link_to 'Sign out', session_url, method: :delete %>
