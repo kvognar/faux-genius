@@ -28,7 +28,10 @@ App.Views.UserShow = Backbone.CompositeView.extend({
   
   promptFilepicker: function () {
     var that = this;
-    filepicker.pick(function (blob) {
+    filepicker.pick({
+      mimetype: 'image/*',
+      service: 'COMPUTER'
+    }, function (blob) {
       App.user.set({"image_url": blob.url});
       App.user.save({}, {
         success: function () {
