@@ -1,16 +1,15 @@
 App.Views.UserAnnotationsIndex = Backbone.CompositeView.extend({
   template: JST['annotations/user_annotations_index'],
-  // className: 'user-annotations-list',
-  // tagName: 'ul',
   
   initialize: function () {
     this.listenTo(this.collection, 'add', this.addAnnotationSubview);
   },
   
   addAnnotationSubview: function (annotation) {
-    var subview = new App.Views.UserAnnotationShow({
+    var subview = new App.Views.AnnotationShow({
       model: annotation,
-      author: this.collection.author
+      collection: this.collection,
+      standAlone: true
     });
     this.addSubview('.user-annotations-list', subview);
   },
@@ -19,7 +18,6 @@ App.Views.UserAnnotationsIndex = Backbone.CompositeView.extend({
     var renderedContent = this.template({ annotations: this.collection });
     this.$el.html(renderedContent);
     this.attachSubviews();
-    // debugger
     return this;
   }
   

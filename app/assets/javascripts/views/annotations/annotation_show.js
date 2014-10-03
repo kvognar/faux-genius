@@ -1,6 +1,5 @@
 App.Views.AnnotationShow = Backbone.CompositeView.extend({
   template: JST['annotations/show'],
-  form: JST['annotations/form'],
   
   events: {
     'submit .annotation-form': 'submit',
@@ -10,12 +9,13 @@ App.Views.AnnotationShow = Backbone.CompositeView.extend({
     'click .delete-annotation-link': 'deleteAnnotation',
   },
   
-  initialize: function () {
+  initialize: function (options) {
     this.suggestionsView = new App.Views.SuggestionIndex({
       collection: this.model.suggestions(),
     });
     this.addSubview('.suggestions-container', this.suggestionsView);
     this.$container = $('.annotation-container');
+    this.standAlone = options.standAlone;
   },
   
   addImage: function (event) {
@@ -33,7 +33,7 @@ App.Views.AnnotationShow = Backbone.CompositeView.extend({
     if (this.model.isNew()) {
       this.hide();
     } else {
-      this.render();
+      this.showAnnotation();
     }
   },
   
@@ -54,20 +54,28 @@ App.Views.AnnotationShow = Backbone.CompositeView.extend({
   },
   
   render: function () {
-    var renderedContent;
-    if (this.model.isNew()) {
-      renderedContent = this.form({ annotation: this.model });
-    } else {
-      renderedContent = this.template({ annotation: this.model });
-    }
+    var renderedContent = this.template({ 
+      annotation: this.model,
+      standAlone: this.standAlone
+     });
     this.$el.html(renderedContent);
+    
+    if (this.model.isNew()) {
+      this.$('.annotation-body').hide();
+    } else {
+      this.$('.annotation-form').hide();
+    }
     this.attachSubviews();
 
     return this;
   },
   
   reset: function () {
-    this.$('.annotation-form-body').val('');
+    if (this.standAlone) {
+      this.render();
+    } else {
+      this.$('.annotation-form-body').val('');
+    }
   },
   
   show: function () {
@@ -81,11 +89,17 @@ App.Views.AnnotationShow = Backbone.CompositeView.extend({
     
   },
   
+  showAnnotation: function () {
+    this.$('.annotation-form').hide();
+    this.$('.annotation-body').show();
+  },
+  
   showAnnotationForm: function (event) {
+    // debugger
     event.preventDefault();
     event.stopPropagation();
-    var renderedForm = this.form({ annotation: this.model });
-    this.$el.html(renderedForm);
+    this.$('.annotation-body').hide();
+    this.$('.annotation-form').show();
   },
   
   submit: function (event) {

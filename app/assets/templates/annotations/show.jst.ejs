@@ -1,21 +1,54 @@
 <div class="annotation-contents">
-  <div class="annotation-credit">
-    Annotation by <a href="/#/users/<%= annotation.author.id %>">
-      <%= annotation.author.escape('username') %>
-    </a>
-  </div>
-  <p class="annotation-body"><%= marked(annotation.escape('body')) %></p>
-    <% if (App.user && annotation.author.id == App.user.id) { %>
-      <div class="annotation-controls">
-        <a href="#" class="edit-annotation-link">
-          edit
-        </a>
-        <span> | </span>
-        <a href="#" class="delete-annotation-link">
-          delete
+  <div class="annotation-body">
+    <% if (!annotation.isNew()) { %>
+    <% if (standAlone) { %>
+      <div class="annotation-standalone-header">
+        <h4 class="annotation-slug">“<%= annotation.escape('slug') %></h4>
+        <h6 class="annotation-article">
+          <a href="/#/articles/<%= annotation.get('article').id %>">
+            <%= _.escape(annotation.get('article').title) %> 
+            by <%= _.escape(annotation.get('article').artist_name) %>
+          </a>
+        </h6>
+      </div>
+    <% } else { %>
+      <div class="annotation-credit">
+        Annotation by <a href="/#/users/<%= annotation.author.id %>">
+          <%= annotation.author.escape('username') %>
         </a>
       </div>
     <% } %>
 
-  <div class="suggestions-container"></div>
+    <%= marked(annotation.escape('body')) %>
+
+  <% if (App.user && annotation.author.id == App.user.id) { %>
+    <div class="annotation-controls">
+      <a href="#" class="edit-annotation-link">
+        edit
+      </a>
+      <span> | </span>
+      <a href="#" class="delete-annotation-link">
+        delete
+      </a>
+    </div>
+  <% } %>
+  <% } %>
+  </div> <!-- annotation-body -->
+
+  <form class="annotation-form">
+    <div class="form-group">
+      <textarea name="annotation[body]" 
+                class="annotation-form-body form-control"
+                placeholder="Write an Annotation"
+                rows="8"><%= annotation.escape('body') %></textarea>
+    </div>
+    <a href="#" class="add-image-link">Add an Image</a>
+    <input type="submit" value="Submit" class="btn btn-default">
+    <a href="#" class="annotation-cancel">cancel</a>
+  </end>
+
 </div>
+
+<% if (!annotation.isNew()) { %>
+  <div class="suggestions-container"></div>
+<% } %>

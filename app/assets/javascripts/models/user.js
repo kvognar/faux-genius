@@ -51,7 +51,7 @@ App.Models.User = Backbone.Model.extend({
       delete options.suggestions;
     }
     if (options.annotations) {
-      this.annotations().set(options.annotations);
+      this.annotations().set(options.annotations, { parse: true });
       delete options.annotations;
     }
     

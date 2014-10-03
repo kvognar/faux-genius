@@ -35,19 +35,12 @@ App.Views.ArticleShow = Backbone.CompositeView.extend({
 
     
   },
-  
-  // createAnnotationForm: function (annotation) {
-  //   this.annotationForm = new App.Views.AnnotationShow({
-  //     model: annotation,
-  //   });
-  //   this.addSubview('.annotation-container', this.annotationForm);
-  //   this.annotationForm.hide();
-  // },
-  
+    
   createAnnotationView: function (annotation) {
     this.annotationView = new App.Views.AnnotationShow({
       model: annotation,
       collection: this.model.annotations(),
+      standAlone: false
     });
     this.addSubview('.annotation-container', this.annotationView);
     this.annotationView.hide();
