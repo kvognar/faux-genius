@@ -552,7 +552,6 @@ ul.notification-list {
 }
 
 .annotation-partial {
-  border-bottom: thin solid $genius-gray;
   
   .annotation-standalone-header {
     background: #222;
@@ -672,4 +671,8 @@ a.dropdown-toggle.notification-dropdown.active {
     }
   }
   
+}
+
+ul.user-annotations-list .annotation-partial {
+    border-bottom: thin solid $genius-gray;
 }
