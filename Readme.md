@@ -1,4 +1,4 @@
-== Faux Genius
+##Faux Genius
 
 This is a clone of [Genius](www.genius.com), a user-driven text annotation site. Users can upload song lyrics (or poems, or any other body of text), and anyone can annotate them, creating a rich, collaboratively made reference library that reveals the history, context and hidden meaning behind every song.
 
