@@ -28,11 +28,18 @@
         <a href="#"
            data-toggle="modal"
            data-target="#sign-up-modal">Sign up</a>
+     </li>
       <li>
         <a href="#"
            data-toggle="modal"
            data-target="#sign-in-modal">Sign in</a>
       </li>
+      <li>
+        <div class="guest-container">
+          <%= render partial: 'users/guest_signin' %>
+        </div>
+      </li>
+      
       <% end %>
     </ul>
     

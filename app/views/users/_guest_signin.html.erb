@@ -1,0 +1,27 @@
+<form action="<%= session_url %>" method="post" class="guest-form">
+  <input 
+    type="hidden" 
+    name="authenticity_token" 
+    value="<%= form_authenticity_token %>">
+    
+  <input
+    type="hidden"
+    name="user[username]"
+    value="som">
+  <input
+    type="hidden"
+    name="user[password]"
+    value="good morning">
+    
+  <input type="submit" value="Sign in as guest" class="btn-guest">
+  
+</form>
+
+<script type="text/javascript">
+  $(function () {
+    $('.guest-form').on('submit', function (event) {
+      var pagePosition = $('<input type="hidden" name="referrer" value="' + document.location.toString() + '">');
+      $(event.currentTarget).append(pagePosition);
+    });
+  });
+</script>

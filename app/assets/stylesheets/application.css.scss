@@ -67,7 +67,25 @@ a:hover {
     width: 30px;
     transition: box-shadow 0.2s;
   }
+  
+  .guest-form {
+    margin-top: 13px;
+  }
+//  .guest-form:hover input {
+//    color: $genius-lightgold;
+//  };
     
+}
+
+.guest-form {
+  input {
+    background: none;
+    color: $genius-gold;
+    border: none;
+  }
+  input:hover {
+    color: $genius-lightgold;
+  };
 }
 
 .annotation-container {
