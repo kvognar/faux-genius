@@ -243,9 +243,9 @@ a:hover {
 
 #home-page {
   .welcome-header {
-//    text-align: center;
+    text-align: center;
     border: thin solid azure;
-    height: 200px;
+    height: 300px;
     position: relative;
     h1.site-logo {
       font-size: 6em;
@@ -254,6 +254,14 @@ a:hover {
       text-align: center;
       color: $genius-gold;
       font-family: $genius-font;
+    }
+    
+    .site-description {
+      p {
+        color: white;
+      }
+//      position: absolute;
+//      top: 100px;
     }
   }
   
