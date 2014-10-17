@@ -268,10 +268,14 @@ a:hover {
   .featured-articles {
     
     font-family: $genius-font;
-    
+    ul {
+      padding: 0;
+      margin: 10px auto;
+      
+    }
     li {
       display: inline-block;
-      margin: 10px;
+      margin: 0 5px 10px 5px;
       position: relative;
     }
     
